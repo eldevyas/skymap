@@ -13,7 +13,7 @@ export default function Provider({ children }: {
 }) {
     return (
         <div
-            className="bg-white h-full min-h-screen w-full background"
+            className="bg-white dark:bg-slate-900 h-full min-h-screen w-full flex flex-col justify-center items-center flex-1 z-10"
         >
             <NextTopLoader
                 color={Colors.sky[500]}
@@ -24,7 +24,7 @@ export default function Provider({ children }: {
                 showSpinner={false}
                 easing="ease"
                 speed={200}
-                shadow={`0 0 10px ${Colors.blue["500"]},0 0 5px ${Colors.lime["500"]}`}
+                shadow={`0 0 10px ${Colors.blue["500"]},0 0 5px ${Colors.sky["500"]}`}
             />
             <Toaster
                 position="top-center"
@@ -67,10 +67,10 @@ export default function Provider({ children }: {
                         {({ icon, message }) => (
                             <div
                                 id="toast-default"
-                                className="flex max-w-sm shadow-2xl filter-none items-center justify-center space-x-2 rounded-lg border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950"
+                                className="flex max-w-sm shadow-2xl filter-none items-center justify-center space-x-2 rounded-3xl border border-zinc-200 bg-white p-3 dark:border-zinc-800 dark:bg-zinc-950"
                                 role="alert"
                             >
-                                <div className="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg">
+                                <div className="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl">
                                     {icon}
                                     <span className="sr-only">
                                         Toast Icon
@@ -82,7 +82,7 @@ export default function Provider({ children }: {
                                 {t.type !== "loading" && (
                                     <button
                                         type="button"
-                                        className="-mx-1.5 -my-1.5 ml-auto inline-flex h-8 w-8 rounded-lg bg-white p-1.5 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:bg-zinc-950 dark:text-zinc-500 dark:hover:bg-zinc-900 dark:hover:text-white"
+                                        className="-mx-1.5 -my-1.5 ml-auto inline-flex h-8 w-8 rounded-xl bg-white p-1.5 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:bg-zinc-950 dark:text-zinc-500 dark:hover:bg-zinc-900 dark:hover:text-white"
                                         data-dismiss-target="#toast-default"
                                         aria-label="Close"
                                         onClick={() => toast.dismiss(t.id)}
