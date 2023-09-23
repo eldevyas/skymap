@@ -13,10 +13,10 @@ export const metadata: Metadata = {
     openGraph: {
         type: 'website',
         locale: 'en_IE',
-        url: 'https://skymap.vercel.app',
+        url: 'https://sky-map.vercel.app',
         images: [
             {
-                url: 'https://skymap.vercel.app/og.png',
+                url: 'https://sky-map.vercel.app/og.png',
                 alt: 'SkyMap - Weather Forecast',
                 width: 1200,
                 height: 630

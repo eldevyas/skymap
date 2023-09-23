@@ -6,6 +6,36 @@ import Colors from "tailwindcss/colors"
 export default function Home() {
     return (
         <div className="bg-white h-full min-h-screen w-full min-w-full">
+            {/* NavBar  */}
+            <nav className="relative w-full">
+                <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-10">
+                    <Link href="/" className="flex items-center">
+                        <Image
+                            src="/favicon.png"
+                            width={64}
+                            height={64}
+                            className="mr-3"
+                            alt="Logo"
+                        />
+                    </Link>
+                    <div className="flex gap-2 md:order-2">
+                        <Link href="/dashboard" className="flex items-center">
+                            <button
+                                type="button"
+                                className="inline-flex text-center justify-center items-center gap-2 text-white bg-cyan-500 hover:bg-cyan-600 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5"
+                            >
+                                <RocketLaunchIcon
+                                    className="h-5 w-5"
+                                    aria-hidden="true"
+                                />
+                                <span className="hidden text-sm font-semibold md:block">
+                                    Get Started
+                                </span>
+                            </button>
+                        </Link>
+                    </div>
+                </div>
+            </nav>
             <div className="m-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
                 <div className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
                     <svg viewBox="0 0 1024 1024" className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0" aria-hidden="true">
@@ -36,7 +66,7 @@ export default function Home() {
                         </div>
                     </div>
                     <div className="relative mt-16 h-80 lg:mt-8">
-                        <Image className="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10" src="/screenshot.png" alt="App screenshot"
+                        <Image className="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10" src="/screenshot.png" alt="App Screenshot"
                             width={1824}
                             height={1080} />
                     </div>
