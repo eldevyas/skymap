@@ -8,22 +8,22 @@
 }
 
 @media (prefers-color-scheme: light) {
-    body {
-        background-color: #FFFFFF;
+    html, body {
+        @apply bg-slate-100; /* Light background color */
     }
     .background {
-        background-color: #e5e5f7;
+        @apply bg-slate-100; /* Light background color */
         background-image: radial-gradient(#38bdf8 0.5px, #FFFFFF 0.5px);
     }
 }
 
 @media (prefers-color-scheme: dark) {
-    body {
-        background-color: #1a1a1a; /* Dark background color */
+    html, body {
+        @apply bg-slate-900; /* Dark background color */
     }
 
     .background {
-        background-color: #1a1a1a; /* Dark background color */
+        @apply bg-slate-900; /* Dark background color */
         background-image: radial-gradient(#38bdf8 0.5px, #000000 0.5px); /* Dark mode dots */
     }
 }
