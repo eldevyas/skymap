@@ -15,8 +15,8 @@ export default function Home() {
             <NavBar />
 
 
-            <div className="mx-auto max-w-7xl py-0 sm:px-6 sm:py-4 lg:px-8 h-full">
-                <div className="relative isolate overflow-hidden bg-slate-950 dark:bg-white px-6 pt-16 shadow-none sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+            <div className="mx-auto max-w-7xl py-4 sm:px-6 sm:py-4 px-8 h-full">
+                <div className="relative overflow-hidden bg-slate-950 dark:bg-white px-6 pt-16 shadow-none rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
                     <svg viewBox="0 0 1024 1024" className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0" aria-hidden="true">
                         <circle cx={512}
                             cy={512}
