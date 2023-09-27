@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# SkyMap Weather Dashboard
+
+![SkyMap Logo](https://sky-map.vercel.app/favicon.png)
+
+SkyMap is a Weather Dashboard that provides real-time weather updates and interactive charts with a single click. No sign-in is required.
+
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+
+## Overview
+
+SkyMap is a powerful weather-tracking tool designed to help you stay informed about weather conditions in real time. It offers a user-friendly interface and a range of features to make weather forecasting easier.
+
+## Features
+
+- Real-time weather updates
+- Interactive weather charts
+- User-friendly interface
+- No sign-in required
 
 ## Getting Started
 
-First, run the development server:
+To get started with SkyMap, follow these simple steps:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/eldevyas/SkyMap.git
+   ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install the required dependencies:
+  ```bash
+  npm install
+  ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Start the application:
+  ```bash
+  npm start
+  ```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Usage
+Once the application is running, you can access SkyMap by opening it in your web browser. Here are some tips for using the app:
 
-## Learn More
+Click on "Get Started" to access the weather dashboard.
+Explore real-time weather data and interactive charts.
+Customize your views and preferences.
+Enjoy using SkyMap to stay ahead of changing weather conditions.
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
+We welcome contributions from the community. If you'd like to contribute to SkyMap, please follow these guidelines:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and test them thoroughly.
+4. Submit a pull request with a clear description of your changes.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+We appreciate your contributions!
 
-## Deploy on Vercel
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Acknowledgments
+We would like to thank all the contributors and users who have supported SkyMap. Your feedback and contributions are invaluable to the project.
