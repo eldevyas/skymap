@@ -48,7 +48,7 @@ export default function Error({
                     overflow-ellipsis whitespace-prewrap break-words
                     "
                     >
-                        <span className="text-lime-500">{error.name}:</span>{" "}
+                        <span className="text-rose-500">{error.name}:</span>{" "}
                         {error.message}
                         {"."}
                     </code>
