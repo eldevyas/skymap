@@ -27,7 +27,7 @@ export const ThemeToggle = () => {
             onClick={() =>
                 theme == "dark" ? setTheme("light") : setTheme("dark")
             }
-            className="inline-flex text-center justify-center items-center gap-2 rounded-xl bg-slate-200 text-slate-900 px-3.5 py-2.5 text-sm font-semibold hover:bg-slate-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className="inline-flex text-center justify-center items-center gap-2 rounded-xl bg-slate-200 text-slate-900 px-3.5 py-2.5 text-sm font-semibold hover:bg-slate-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
         >
             <Sun1
                 id="theme-toggle-dark-icon"
@@ -66,7 +66,7 @@ export default function NavBar() {
                     <Link href="/auth/sign-up" className="flex items-center">
                         <button
                             type="button"
-                            className="inline-flex text-center justify-center items-center gap-2 rounded-xl bg-slate-200 text-slate-900 px-3.5 py-2.5 text-sm font-semibold hover:bg-slate-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                            className="inline-flex text-center justify-center items-center gap-2 rounded-xl bg-slate-200 text-slate-900 px-3.5 py-2.5 text-sm font-semibold hover:bg-slate-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
                         >
                             <LoginCurve variant="Bulk" color="currentColor" />
                             <span className="hidden text-sm font-semibold md:block">
@@ -77,7 +77,7 @@ export default function NavBar() {
                     <Link href="/auth/sign-in" className="flex items-center">
                         <button
                             type="button"
-                            className="inline-flex text-center justify-center items-center gap-2 rounded-xl bg-slate-800 text-slate-200 px-3.5 py-2.5 text-sm font-semibold hover:bg-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                            className="inline-flex text-center justify-center items-center gap-2 rounded-xl bg-slate-800 text-slate-200 px-3.5 py-2.5 text-sm font-semibold hover:bg-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white dark:bg-sky-600 dark:hover:bg-sky-700 dark:text-text-sky-200"
                         >
                             <Lock variant="Bulk" color="currentColor" />
                             <span className="hidden text-sm font-semibold md:block">
