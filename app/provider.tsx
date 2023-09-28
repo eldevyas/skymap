@@ -17,7 +17,7 @@ export default function Provider({ children }: {
     return (
         <ThemeProvider attribute="class">
             <div
-                className="bg-slate-100 dark:bg-slate-900 h-full min-h-screen w-full flex flex-col justify-center items-center flex-1 z-10"
+                className="bg-slate-100 dark:bg-slate-900 h-full min-h-screen w-full flex flex-col justify-start items-start gap-4 p-4 flex-1 z-10"
             >
                 <NextTopLoader
                     color={Colors.sky[500]}
