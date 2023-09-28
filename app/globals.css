@@ -2,28 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
-
 .background {
-    background-size: 10px 10px;
+  background-size: 10px 10px;
 }
 
 @media (prefers-color-scheme: light) {
-    html, body {
-        @apply bg-slate-100; /* Light background color */
-    }
-    .background {
-        @apply bg-slate-100; /* Light background color */
-        background-image: radial-gradient(#38bdf8 0.5px, #FFFFFF 0.5px);
-    }
+  html,
+  body {
+    @apply bg-slate-100; /* Light background color */
+  }
+  .background {
+    @apply bg-slate-100; /* Light background color */
+    background-image: radial-gradient(#38bdf8 0.5px, #ffffff 0.5px);
+  }
 }
 
 @media (prefers-color-scheme: dark) {
-    html, body {
-        @apply bg-slate-900; /* Dark background color */
-    }
+  html,
+  body {
+    @apply bg-slate-900; /* Dark background color */
+  }
 
-    .background {
-        @apply bg-slate-900; /* Dark background color */
-        background-image: radial-gradient(#38bdf8 0.5px, #000000 0.5px); /* Dark mode dots */
-    }
+  .background {
+    @apply bg-slate-900; /* Dark background color */
+    background-image: radial-gradient(
+      #38bdf8 0.5px,
+      #000000 0.5px
+    ); /* Dark mode dots */
+  }
+}
+
+* {
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+  appearance: none;
 }
