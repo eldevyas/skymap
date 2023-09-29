@@ -71,7 +71,7 @@ export default function Provider({ children }: {
                             {({ icon, message }) => (
                                 <div
                                     id="toast-default"
-                                    className="flex max-w-sm shadow-2xl filter-none items-center justify-center space-x-2 rounded-3xl border border-zinc-200 slate p-3 dark:border-zinc-800 dark:bg-zinc-950"
+                                    className="flex max-w-sm shadow-2xl filter-none items-center justify-center space-x-2 rounded-3xl border border-slate-200 slate p-3 dark:border-slate-800 dark:bg-slate-950"
                                     role="alert"
                                 >
                                     <div className="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl">
@@ -80,13 +80,13 @@ export default function Provider({ children }: {
                                             Toast Icon
                                         </span>
                                     </div>
-                                    <div className="ml-3 text-sm font-normal text-zinc-500 dark:text-zinc-400">
+                                    <div className="ml-3 text-sm font-normal text-slate-500 dark:text-slate-400">
                                         {message}
                                     </div>
                                     {t.type !== "loading" && (
                                         <button
                                             type="button"
-                                            className="-mx-1.5 -my-1.5 ml-auto inline-flex h-8 w-8 rounded-xl slate p-1.5 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-900 dark:bg-zinc-950 dark:text-zinc-500 dark:hover:bg-zinc-900 dark:hover:text-white"
+                                            className="-mx-1.5 -my-1.5 ml-auto inline-flex h-8 w-8 rounded-xl slate p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-900 dark:bg-slate-950 dark:text-slate-500 dark:hover:bg-slate-900 dark:hover:text-white"
                                             data-dismiss-target="#toast-default"
                                             aria-label="Close"
                                             onClick={() => toast.dismiss(t.id)}
@@ -95,7 +95,7 @@ export default function Provider({ children }: {
                                                 Close
                                             </span>
                                             <CloseSquare
-                                                className="h-5 w-5 text-zinc-400 dark:text-zinc-300"
+                                                className="h-5 w-5 text-slate-400 dark:text-slate-300"
                                                 color="currentColor"
                                                 variant="Bulk"
                                                 aria-hidden="true"
