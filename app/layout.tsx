@@ -1,10 +1,14 @@
 import './globals.css'
 import type { Metadata }
     from 'next'
-import { Inter } from 'next/font/google'
+import {
+    Merriweather_Sans
+} from 'next/font/google'
 import Provider from './provider';
+import Footer from './components/footer';
+import NavBar from './components/navBar';
 
-const inter = Inter({ subsets: ['latin'] })
+const FontFamily = Merriweather_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
     title: 'SkyMap - Weather Forecast',
@@ -30,10 +34,18 @@ export default function RootLayout({ children }: {
     return (
         <html lang="en">
             <body className={
-                inter.className
+                FontFamily.className
             }>
                 <Provider>
-                    {children}
+                    <div className="w-full flex flex-col gap-4 min-h-screen justify-between p-4">
+                        {/* NavBar  */}
+                        <NavBar />
+                        <div className='w-full flex flex-col gap-4 flex-1 items-center justify-center'>
+                            {children}
+                        </div>
+                        {/* Footer */}
+                        <Footer />
+                    </div>
                 </Provider>
             </body>
         </html>

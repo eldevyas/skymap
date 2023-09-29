@@ -6,7 +6,7 @@ import {
     PresentionChart,
 } from "iconsax-react";
 import Link from "next/link";
-import MainDashboard from "./components/interface/main";
+import MainDashboard from "./main";
 
 export default function Dashboard() {
     return (
@@ -30,7 +30,7 @@ export default function Dashboard() {
                                 />
                                 <Link
                                     href="/"
-                                    className="ml-1 text-sm font-medium text-slate-700 hover:text-blue-600 md:ml-2 dark:text-slate-400 dark:hover:text-white"
+                                    className="ml-1 text-sm font-medium text-slate-700 hover:text-sky-600 md:ml-2 dark:text-slate-400 dark:hover:text-white"
                                 >
                                     Home
                                 </Link>
@@ -54,7 +54,7 @@ export default function Dashboard() {
                                 />
                                 <Link
                                     href="/dashboard"
-                                    className="ml-1 text-sm font-medium text-slate-700 hover:text-blue-600 md:ml-2 dark:text-slate-400 dark:hover:text-white"
+                                    className="ml-1 text-sm font-medium text-slate-700 hover:text-sky-600 md:ml-2 dark:text-slate-400 dark:hover:text-white"
                                 >
                                     Dashboard
                                 </Link>

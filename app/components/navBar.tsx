@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link';
 import Image from "next/image";
 
@@ -23,7 +23,7 @@ import { Menu, Transition } from '@headlessui/react';
 
 export default function NavBar() {
     return (
-        <nav className="w-full mx-auto max-w-7xl relative bg-slate-50 dark:bg-slate-800 px-6 py-4 rounded-3xl sm:px-16 lg:flex lg:gap-x-20 lg:px-24 flex flex-row flex-wrap md:flex-row items-center justify-between p-10">
+        <nav className="w-full mx-auto max-w-7xl relative bg-slate-50 dark:bg-slate-800 px-6 py-4 rounded-3xl sm:px-16 lg:flex lg:gap-x-20 lg:px-24 flex flex-row flex-wrap md:flex-row items-center justify-between p-10 border border-slate-300 outline-none dark:border-slate-600">
             <Link href="/" className="flex items-center">
                 <Image
                     src="/favicon.png"
@@ -66,8 +66,21 @@ export default function NavBar() {
 }
 
 function ThemeDropdown() {
-    const { systemTheme, theme, setTheme } = useTheme();
-    const currentTheme = theme === "system" ? systemTheme : theme;
+    const { theme, setTheme } = useTheme();
+    const [ThemeState, setThemeState] = useState<string>("");
+
+    useEffect(
+        () => {
+            console.log(`Theme: ${theme}`)
+            if (theme === "light") {
+                setThemeState("light");
+            } else if (theme === "dark") {
+                setThemeState("dark");
+            } else if (theme === "system") {
+                setThemeState("system");
+            }
+        }, [theme]
+    )
 
     const themeButton = (themeName: any, icon: any, label: any, close: any) => (
         <button
@@ -75,7 +88,7 @@ function ThemeDropdown() {
             onClick={() => { setTheme(themeName); close() }}
             className={`
         inline-flex justify-center items-center gap-2 rounded-lg px-3.5 py-2.5 text-sm font-semibold
-        hover:bg-sky-600 dark:hover:bg-sky-600 hover:text-white ${currentTheme === themeName ? 'bg-slate-600 text-white' : 'dark:bg-none dark:text-slate-200 dark:hover:text-white dark:hover:bg-sky-600'}
+        hover:bg-sky-600 dark:hover:bg-sky-600 hover:text-white ${ThemeState === themeName ? 'bg-slate-200 text-slate-600 dark:bg-slate-700 dark:text-slate-50' : 'dark:bg-none dark:text-slate-200 dark:hover:text-white dark:hover:bg-sky-600'}
       `}
         >
             <span className="flex items-center">
@@ -105,9 +118,9 @@ function ThemeDropdown() {
             >
                 <Menu.Items
                     className={`
-        absolute right-0 left-auto w-56 mt-2 p-2 gap-1 origin-top-right bg-white rounded-xl shadow-2xl
-        focus:outline-none dark:bg-slate-700 dark:divide-gray-700 flex flex-col
-        sm:right-auto sm:left-0
+        absolute right-0 left-auto w-56 mt-2 p-2 gap-1 origin-top-right bg-slate-50 rounded-xl shadow-2xl
+        focus:outline-none dark:bg-slate-800 dark:divide-gray-700 flex flex-col
+        sm:right-auto sm:left-0 border border-slate-300 dark:border-slate-600
     `}
                 >
                     <Menu.Item>
@@ -124,31 +137,3 @@ function ThemeDropdown() {
         </Menu>
     );
 }
-
-export const ThemeToggle = () => {
-    const { systemTheme, theme, setTheme } = useTheme();
-    const currentTheme = theme === "system" ? systemTheme : theme;
-
-    return (
-        <button
-            id="theme-toggle"
-            type="button"
-            title="Toggle Theme"
-            onClick={() =>
-                theme == "dark" ? setTheme("light") : setTheme("dark")
-            }
-            className="inline-flex text-center justify-center items-center gap-2 rounded-xl bg-slate-200 text-slate-900 px-3.5 py-2.5 text-sm font-semibold hover:bg-slate-300 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
-        >
-            <Sun1
-                id="theme-toggle-dark-icon"
-                className="hidden h-5 w-5 dark:block"
-                variant="Bulk"
-            />
-            <Moon
-                id="theme-toggle-light-icon"
-                className="block h-5 w-5 dark:hidden"
-                variant="Bulk"
-            />
-        </button>
-    );
-};

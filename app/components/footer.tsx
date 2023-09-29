@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Footer() {
     return (
-        <footer className="w-full mx-auto max-w-7xl relative bg-slate-50 dark:bg-slate-800 px-6 py-4 rounded-3xl sm:px-16 lg:flex lg:gap-x-20 lg:px-24 flex flex-row flex-wrap md:flex-row items-center justify-between p-10">
+        <footer className="w-full mx-auto max-w-7xl relative bg-slate-50 dark:bg-slate-800 px-6 py-4 rounded-3xl sm:px-16 lg:flex lg:gap-x-20 lg:px-24 flex flex-row flex-wrap md:flex-row items-center justify-between p-10 border border-slate-300 outline-none dark:border-slate-600">
             <div className="mx-auto flex flex-col lg:flex-row gap-2 md:order-2 lg:items-baseline justify-center items-center lg:justify-center text-center">
                 <span className="text-sm font-bold tracking-tight text-slate-900 dark:text-white sm:text-lg">
                     SkyMap

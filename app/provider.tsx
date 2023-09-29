@@ -17,7 +17,7 @@ export default function Provider({ children }: {
     return (
         <ThemeProvider attribute="class">
             <div
-                className="bg-slate-100 dark:bg-slate-900 h-full min-h-screen w-full flex flex-col justify-start items-start gap-4 p-4 flex-1 z-10"
+                className="bg-slate-100 dark:bg-slate-900 h-full min-h-screen w-full flex flex-col justify-start items-start z-10 background"
             >
                 <NextTopLoader
                     color={Colors.sky[500]}
@@ -71,7 +71,7 @@ export default function Provider({ children }: {
                             {({ icon, message }) => (
                                 <div
                                     id="toast-default"
-                                    className="flex max-w-sm shadow-2xl filter-none items-center justify-center space-x-2 rounded-3xl border border-slate-200 slate p-3 dark:border-slate-800 dark:bg-slate-950"
+                                    className="flex max-w-sm shadow-2xl filter-none items-center justify-center space-x-2 rounded-3xl p-3 border border-slate-300 outline-none dark:border-slate-600 dark:bg-slate-800"
                                     role="alert"
                                 >
                                     <div className="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl">

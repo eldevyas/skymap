@@ -1,3 +1,4 @@
+import React from 'react';
 import { createClient } from "@google/maps";
 import { Refresh2 } from "iconsax-react";
 import { useEffect, useState } from "react";
@@ -46,7 +47,7 @@ export default function WaetherOverview() {
     }, []);
 
     return (
-        <div className='w-full h-auto relative bg-slate-50 dark:bg-slate-800 px-6 py-4 rounded-3xl sm:px-16 lg:gap-x-20 lg:px-24 p-10 overflow-hidden flex flex-col gap-4'>
+        <div className='w-full h-auto relative bg-slate-50 dark:bg-slate-800 px-6 py-4 rounded-3xl sm:px-16 lg:gap-x-20 lg:px-24 p-10 overflow-hidden flex flex-col gap-4 border border-slate-300 outline-none dark:border-slate-600'>
             {
                 (isLoading || !IPLocation || !CurrentDate || !CurrentTime) ? (
                     <div role="status" className="space-y-2.5 animate-pulse max-w-lg">
@@ -70,7 +71,7 @@ export default function WaetherOverview() {
                         <h1
                             className='text-lg font-bold tracking-tight text-slate-800 dark:text-slate-50 sm:text-xl'
                         >
-                            {IPLocation}
+                            {IPLocation}.
                         </h1>
                     </div>
                 )

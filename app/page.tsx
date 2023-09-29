@@ -7,13 +7,12 @@ import Link from 'next/link'
 import Colors from "tailwindcss/colors"
 import NavBar from './components/navBar';
 import Footer from './components/footer';
+import React from 'react';
 
 export default function Home() {
     return (
-        <div className="w-full flex flex-col gap-4">
-            {/* NavBar  */}
-            <NavBar />
-            <div className="mx-auto w-full max-w-7xl py-4 sm:py-4 h-auto relative overflow-hidden bg-slate-50 dark:bg-slate-800 px-6 pt-16 rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+        <React.Fragment>
+            <div className="mx-auto w-full max-w-7xl py-4 sm:py-4 h-auto relative overflow-hidden bg-slate-50 dark:bg-slate-800 px-6 pt-16 rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0 border border-slate-300 outline-none dark:border-slate-600">
                 <svg viewBox="0 0 1024 1024" className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0" aria-hidden="true">
                     <circle cx={512}
                         cy={512}
@@ -63,7 +62,6 @@ export default function Home() {
                         height={1080} />
                 </div>
             </div>
-            <Footer />
-        </div >
+        </React.Fragment>
     )
 }
