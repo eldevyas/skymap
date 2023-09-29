@@ -23,7 +23,7 @@ import { Menu, Transition } from '@headlessui/react';
 
 export default function NavBar() {
     return (
-        <nav className="w-full mx-auto max-w-7xl relative bg-slate-50 dark:bg-slate-800 px-6 py-4 rounded-3xl sm:px-16 lg:flex lg:gap-x-20 lg:px-24 flex flex-row flex-wrap md:flex-row items-center justify-between p-10 border border-slate-300 outline-none dark:border-slate-600">
+        <nav className="w-full mx-auto max-w-7xl relative bg-slate-50 dark:bg-slate-900 px-6 py-4 rounded-3xl sm:px-16 lg:flex lg:gap-x-20 lg:px-24 flex flex-row flex-wrap md:flex-row items-center justify-between p-10 border border-slate-300 outline-none dark:border-slate-600">
             <Link href="/" className="flex items-center">
                 <Image
                     src="/favicon.png"
@@ -41,7 +41,7 @@ export default function NavBar() {
                 <Link href="/auth/sign-up" className="flex items-center">
                     <button
                         type="button"
-                        className="inline-flex text-center justify-center items-center gap-2 rounded-xl bg-slate-200 text-slate-900 px-3.5 py-2.5 text-sm font-semibold hover:bg-slate-300 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
+                        className="inline-flex text-center justify-center items-center gap-2 rounded-xl bg-slate-200 text-slate-900 px-3.5 py-2.5 text-sm font-semibold hover:bg-slate-300 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-600"
                     >
                         <LoginCurve variant="Bulk" color="currentColor" />
                         <span className="hidden text-sm font-semibold md:block">
@@ -52,7 +52,7 @@ export default function NavBar() {
                 <Link href="/auth/sign-in" className="flex items-center">
                     <button
                         type="button"
-                        className="inline-flex text-center justify-center items-center gap-2 rounded-xl bg-slate-800 text-slate-200 px-3.5 py-2.5 text-sm font-semibold hover:bg-slate-900 dark:bg-sky-600 dark:hover:bg-sky-700 dark:text-text-sky-200"
+                        className="inline-flex text-center justify-center items-center gap-2 rounded-xl bg-slate-800 text-slate-200 px-3.5 py-2.5 text-sm font-semibold hover:bg-slate-900 dark:bg-amber-600 dark:hover:bg-amber-700 dark:text-text-amber-200"
                     >
                         <Lock variant="Bulk" color="currentColor" />
                         <span className="hidden text-sm font-semibold md:block">
@@ -88,7 +88,7 @@ function ThemeDropdown() {
             onClick={() => { setTheme(themeName); close() }}
             className={`
         inline-flex justify-center items-center gap-2 rounded-lg px-3.5 py-2.5 text-sm font-semibold
-        hover:bg-sky-600 dark:hover:bg-sky-600 hover:text-white ${ThemeState === themeName ? 'bg-slate-200 text-slate-600 dark:bg-slate-700 dark:text-slate-50' : 'dark:bg-none dark:text-slate-200 dark:hover:text-white dark:hover:bg-sky-600'}
+        hover:bg-amber-600 dark:hover:bg-amber-600 hover:text-white ${ThemeState === themeName ? 'bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-50' : 'dark:bg-none dark:text-slate-200 dark:hover:text-white dark:hover:bg-amber-600'}
       `}
         >
             <span className="flex items-center">
@@ -103,7 +103,7 @@ function ThemeDropdown() {
             <Menu.Button
                 className={`
           inline-flex justify-center items-center gap-2 rounded-xl bg-slate-200 text-slate-900
-          px-3.5 py-2.5 text-sm font-semibold hover:bg-slate-300 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600
+          px-3.5 py-2.5 text-sm font-semibold hover:bg-slate-300 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-600
         `}
             >
                 <ColorSwatch variant="Bulk" color="currentColor" />
@@ -119,7 +119,7 @@ function ThemeDropdown() {
                 <Menu.Items
                     className={`
         absolute right-0 left-auto w-56 mt-2 p-2 gap-1 origin-top-right bg-slate-50 rounded-xl shadow-2xl
-        focus:outline-none dark:bg-slate-800 dark:divide-gray-700 flex flex-col
+        focus:outline-none dark:bg-slate-900 dark:divide-gray-700 flex flex-col
         sm:right-auto sm:left-0 border border-slate-300 dark:border-slate-600
     `}
                 >

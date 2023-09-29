@@ -12,7 +12,7 @@ import React from 'react';
 export default function Home() {
     return (
         <React.Fragment>
-            <div className="mx-auto w-full max-w-7xl py-4 sm:py-4 h-auto relative overflow-hidden bg-slate-50 dark:bg-slate-800 px-6 pt-16 rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0 border border-slate-300 outline-none dark:border-slate-600">
+            <div className="mx-auto w-full max-w-7xl py-4 sm:py-4 h-auto relative overflow-hidden bg-slate-50 dark:bg-slate-900 px-6 pt-16 rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0 border border-slate-300 outline-none dark:border-slate-600">
                 <svg viewBox="0 0 1024 1024" className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0" aria-hidden="true">
                     <circle cx={512}
                         cy={512}
@@ -40,7 +40,7 @@ export default function Home() {
                         <Link href="/dashboard" className="flex items-center">
                             <button
                                 type="button"
-                                className="inline-flex w-full sm:w-auto text-center justify-center items-center gap-2 rounded-xl bg-sky-600 dark:bg-slate-50 px-3.5 py-2.5 text-sm font-semibold text-slate-50 dark:text-slate-800 shadow-sm hover:bg-sky-700 dark:hover:bg-slate-100"
+                                className="inline-flex w-full sm:w-auto text-center justify-center items-center gap-2 rounded-xl bg-amber-600 dark:bg-slate-50 px-3.5 py-2.5 text-sm font-semibold text-slate-50 dark:text-slate-800 shadow-sm hover:bg-amber-700 dark:hover:bg-slate-100"
                             >
                                 <PresentationChartBarIcon
                                     className="h-6 w-6 text-slate-300 dark:text-slate-600"
@@ -56,10 +56,13 @@ export default function Home() {
                 <div className="relative mt-16 h-2/4 lg:mt-8">
                     <Image
                         className="absolute left-0 top-0 w-[57rem] max-w-none rounded-xl bg-white/5 ring-1 ring-white/10"
-                        src="/screenshot.png"
+                        src="/lake.jpg"
                         alt="App Screenshot"
                         width={1824}
-                        height={1080} />
+                        height={1080}
+                        objectFit='cover'
+                        objectPosition='right'
+                    />
                 </div>
             </div>
         </React.Fragment>

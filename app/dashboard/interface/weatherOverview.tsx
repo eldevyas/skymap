@@ -47,12 +47,12 @@ export default function WaetherOverview() {
     }, []);
 
     return (
-        <div className='w-full h-auto relative bg-slate-50 dark:bg-slate-800 px-6 py-4 rounded-3xl sm:px-16 lg:gap-x-20 lg:px-24 p-10 overflow-hidden flex flex-col gap-4 border border-slate-300 outline-none dark:border-slate-600'>
+        <div className='w-full h-auto relative bg-slate-50 dark:bg-slate-900 px-6 py-4 rounded-3xl sm:px-16 lg:gap-x-20 lg:px-24 p-10 overflow-hidden flex flex-col gap-4 border border-slate-300 outline-none dark:border-slate-600'>
             {
                 (isLoading || !IPLocation || !CurrentDate || !CurrentTime) ? (
                     <div role="status" className="space-y-2.5 animate-pulse max-w-lg">
                         <div className="flex items-center w-full space-x-2">
-                            <div className="h-3.5 bg-slate-200 rounded-full dark:bg-slate-700 w-32 max-w-full"></div>
+                            <div className="h-3.5 bg-slate-200 rounded-full dark:bg-slate-800 w-32 max-w-full"></div>
                             <div className="h-3.5 bg-slate-300 rounded-full dark:bg-slate-600 w-24 max-w-full"></div>
                         </div>
                         <div className="flex items-center w-full space-x-2 max-w-[480px]">
