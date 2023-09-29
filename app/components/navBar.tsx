@@ -87,7 +87,7 @@ function ThemeDropdown() {
             type="button"
             onClick={() => { setTheme(themeName); close() }}
             className={`
-        inline-flex justify-center items-center gap-2 rounded-lg px-3.5 py-2.5 text-sm font-semibold
+        inline-flex justify-start items-baseline gap-2 rounded-lg px-3.5 py-2.5 text-sm font-semibold
         hover:bg-amber-600 dark:hover:bg-amber-600 hover:text-white ${ThemeState === themeName ? 'bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-50' : 'dark:bg-none dark:text-slate-200 dark:hover:text-white dark:hover:bg-amber-600'}
       `}
         >
@@ -117,11 +117,9 @@ function ThemeDropdown() {
                 leaveTo="transform scale-95 opacity-0"
             >
                 <Menu.Items
-                    className={`
-        absolute right-0 left-auto w-56 mt-2 p-2 gap-1 origin-top-right bg-slate-50 rounded-xl shadow-2xl
+                    className={`absolute mt-1 max-h-60 top-full w-auto max-w-sm overflow-auto text-base sm:text-sm z-50 p-2 gap-1 origin-top-right bg-slate-50 rounded-xl shadow-2xl
         focus:outline-none dark:bg-slate-900 dark:divide-gray-700 flex flex-col
-        sm:right-auto sm:left-0 border border-slate-300 dark:border-slate-600
-    `}
+        sm:right-auto sm:left-0 border border-slate-300 dark:border-slate-600`}
                 >
                     <Menu.Item>
                         {({ close }) => themeButton("light", <Sun1 className="h-5 w-5" variant="Bulk" color="currentColor" />, "Light", close)}
