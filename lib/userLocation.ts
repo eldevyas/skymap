@@ -17,11 +17,13 @@ export function getuserGeolocation() {
             (error) => {
                 // Handle errors, e.g. user denied location sharing permissions
                 console.error("Error getting user location:", error);
+
             }
         );
     } else {
         // Geolocation is not supported by the browser
         console.error("Geolocation is not supported by this browser.");
+        return null;
     }
 }
 

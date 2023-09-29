@@ -1,6 +1,6 @@
 "use client";
 
-import { SearchNormal } from 'iconsax-react';
+import { Refresh2, SearchNormal } from 'iconsax-react';
 import React, { useEffect } from 'react'
 import {
     useQuery,
@@ -9,45 +9,9 @@ import {
     QueryClient,
     QueryClientProvider,
 } from '@tanstack/react-query'
-
-function WeatherAPI() {
-    const [IPLocation, setIPLocation] = React.useState<{}>({});
-
-    const options = {
-        method: 'GET',
-        url: 'https://ip-geo-location.p.rapidapi.com/ip/check',
-        params: { format: 'json' },
-        headers: {
-            'X-RapidAPI-Key': 'ed4bbb9748msh3b71255326ec4c8p18741fjsn5369b51539b6',
-            'X-RapidAPI-Host': 'ip-geo-location.p.rapidapi.com'
-        }
-    };
-
-    useEffect(() => {
-
-    }, []);
-
-
-    return (
-        <div className='w-full h-auto relative bg-slate-50 dark:bg-slate-800 px-6 py-4 rounded-3xl sm:px-16 lg:gap-x-20 lg:px-24 p-10 overflow-hidden'>
-            {/* City and user Location Overview */}
-            <p>
-                <span className='text-lg font-bold tracking-tight text-slate-800 dark:text-slate-50 sm:text-xl'>
-                    21°
-                </span>
-                <span className='text-lg font-bold tracking-tight text-slate-800 dark:text-slate-50 sm:text-xl'>
-                    C
-                </span>
-            </p>
-            <h1
-                className='text-lg font-bold tracking-tight text-slate-800 dark:text-slate-50 sm:text-xl'
-            >
-                Rabat, Morocco.
-            </h1>
-
-        </div>
-    )
-}
+import axios from 'axios';
+import { createClient } from '@google/maps';
+import WeatherOverview from './blocks/WeatherOverview';
 
 export default function MainDashboard() {
     return (
@@ -56,12 +20,12 @@ export default function MainDashboard() {
                 className="mx-auto relative flex flex-col gap-4"
             >
                 <SearchBar />
-                <WeatherAPI />
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <WeatherOverview />
+                {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="relative h-96 bg-slate-50 dark:bg-slate-800 px-6 py-4 rounded-3xl sm:px-16 lg:flex lg:gap-x-20 lg:px-24 flex flex-col items-center justify-center p-10 overflow-hidden"></div>
                     <div className="border border-dashed rounded-3xl  border-slate-300 dark:border-slate-600 h-96"></div>
                 </div>
-                <div className="border border-dashed rounded-3xl  border-slate-300 dark:border-slate-600 h-96"></div>
+                <div className="border border-dashed rounded-3xl  border-slate-300 dark:border-slate-600 h-96"></div> */}
             </div>
         </>
     )
@@ -75,7 +39,7 @@ function SearchBar() {
             <div
                 className="mb-3 flex w-full items-center"
             >
-                <label htmlFor="simple-search" className="sr-only">
+                <label className="sr-only">
                     Search
                 </label>
                 <div className="relative w-full">
@@ -109,11 +73,5 @@ function SearchBar() {
                 </button>
             </div>
         </>
-    )
-}
-
-function FetchCityWeather() {
-    return (
-        <></>
     )
 }
