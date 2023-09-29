@@ -61,8 +61,8 @@ export default function WaetherOverview() {
                         .then((response) => {
                             console.log(response.json.results[0].formatted_address);
 
-                            var City = response.json.results[0].address_components[2].long_name;
-                            var Country = response.json.results[0].address_components[5].long_name;
+                            var City = response.json.results[0].address_components[0].long_name;
+                            var Country = response.json.results[0].address_components[3].long_name;
 
                             setIPLocation(`${City}, ${Country}.`);
                         })
@@ -111,7 +111,7 @@ export default function WaetherOverview() {
                         <h1
                             className='text-lg font-bold tracking-tight text-slate-800 dark:text-slate-50 sm:text-xl'
                         >
-                            {IPLocation === '' ? 'Loading...' : IPLocation}
+                            {IPLocation}
                         </h1>
                     </div>
                 )
