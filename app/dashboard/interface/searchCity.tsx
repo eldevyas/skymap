@@ -1,11 +1,24 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import { SearchNormal } from "iconsax-react";
+import React, { Fragment, useContext, useEffect, useState } from 'react'
+import { Location, SearchNormal } from "iconsax-react";
 import { Combobox, Transition } from '@headlessui/react'
 import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/24/outline';
 import { createClient } from '@google/maps';
 import axios from 'axios';
+import AppContext from '@/app/context';
+import toast from 'react-hot-toast';
 
-export default function SearchBar() {
+type City = {
+    id: number,
+    mainText: string,
+    secondaryText: string,
+    countryCode: string,
+    lat: number,
+    lng: number,
+}
+
+export default function SearchCity() {
+    const { getters, setters, utils } = useContext(AppContext);
+
     // Create Maps Client
     const MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY || "AIzaSyCQe29u1Q8RryIv57m22J0XVu6CygHa8Q4";
 
@@ -15,13 +28,7 @@ export default function SearchBar() {
     });
 
     // Cities List
-    const [cities, setCities] = useState<{
-        id: number,
-        name: string,
-        country: string,
-        lat: number,
-        lng: number,
-    }[]>([])
+    const [cities, setCities] = useState<City[]>([])
 
     // Query String Parameters
     const [query, setQuery] = useState('')
@@ -33,7 +40,7 @@ export default function SearchBar() {
         query === ''
             ? cities
             : cities.filter((city) =>
-                city.name
+                city.mainText
                     .toLowerCase()
                     .replace(/\s+/g, '')
                     .includes(query.toLowerCase().replace(/\s+/g, ''))
@@ -45,28 +52,45 @@ export default function SearchBar() {
         setQuery(event.target.value)
 
         // Fetch Cities with the Query
-        const newCities = await fetchCities(event.target.value);
+        const newCities = await utils.fetchCitiesByQuery(event.target.value);
 
         const citiesWithDesiredFormat = newCities.map((city: any) => {
-            return {
-                id: city.place_id,
-                name: city.structured_formatting.main_text,
-                country: city.structured_formatting.secondary_text,
-                lat: 0,
-                lng: 0,
+            if (true) {
+                return {
+                    id: city.place_id,
+                    mainText: city.structured_formatting.main_text,
+                    secondaryText: city.structured_formatting.secondary_text,
+                    countryCode: "",
+                    lat: 0,
+                    lng: 0,
+                }
             }
         });
 
-        setCities(citiesWithDesiredFormat);
+        citiesWithDesiredFormat.forEach(async (city: City) => {
+            const { latitude, longitude, countryCode } = await utils.getLatLngAndCountryCode(city.id);
+            city.countryCode = countryCode;
+            city.lat = latitude;
+            city.lng = longitude;
+        });
 
-        // Set Cities
-        console.log(`Cities with desired format: `, citiesWithDesiredFormat);
+        if (citiesWithDesiredFormat.length > 0) {
+            setCities(citiesWithDesiredFormat);
+        } else {
+            setCities([]);
+        }
+    }
+
+    const handleSelection = async (city: City) => {
+        // Set Selected City
+        setSelected(city);
+        toast.success(`Selected ${city.mainText}!`);
     }
 
     return (
         <React.Fragment>
             {/* Search DropDown */}
-            <Combobox value={selected} onChange={setSelected}>
+            <Combobox value={selected} onChange={handleSelection}>
                 <div className="relative flex w-full items-center">
                     <div
                         className="mb-3 flex w-full items-center"
@@ -84,10 +108,16 @@ export default function SearchBar() {
                             </div>
                             <Combobox.Input
                                 type="text"
-                                className="block w-full rounded-3xl border border-slate-300 outline-none bg-slate-50 px-5 py-2.5 pl-14 text-sm text-slate-900 focus:border-amber-500 focus:ring-amber-500  dark:border-slate-600 dark:bg-slate-900 dark:text-white dark:placeholder-slate-400 dark:focus:border-amber-500 dark:focus:ring-amber-500"
+                                className="block w-full rounded-3xl border border-slate-300 outline-none bg-slate-50 px-5 py-2.5 pl-14 text-sm text-slate-900 focus:border-sky-500 focus:ring-sky-500  dark:border-slate-600 dark:bg-slate-900 dark:text-white dark:placeholder-slate-400 dark:focus:border-sky-500 dark:focus:ring-sky-500"
                                 placeholder="Search City..."
                                 required
-                                displayValue={(city: any) => city.name}
+                                displayValue={(selected: City) => {
+                                    if (selected) {
+                                        return selected.mainText;
+                                    } else {
+                                        return '';
+                                    }
+                                }}
                                 onChange={handleSearch}
                             />
                             <kbd className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 transform rounded-3xl border border-slate-200 bg-slate-100/50 px-2 py-1 text-xs font-semibold text-slate-800 dark:border-slate-800 dark:bg-slate-950/50 dark:text-slate-300">
@@ -96,7 +126,7 @@ export default function SearchBar() {
                         </div>
                         <Combobox.Button
                             type='button'
-                            className="ml-2 rounded-3xl border border-amber-700 bg-amber-700 p-2.5 text-sm font-medium text-white hover:bg-amber-800 focus:outline-none dark:bg-amber-600 dark:hover:bg-amber-700"
+                            className="ml-2 rounded-3xl border border-sky-700 bg-sky-700 p-2.5 text-sm font-medium text-white hover:bg-sky-800 focus:outline-none dark:bg-sky-600 dark:hover:bg-sky-700"
                         >
                             <SearchNormal
                                 className="h-5 w-5"
@@ -125,7 +155,7 @@ export default function SearchBar() {
                                     <Combobox.Option
                                         key={city.id}
                                         className={({ active }) =>
-                                            `relative inline-flex justify-start items-baseline gap-2 rounded-lg px-3.5 py-2.5 text-sm font-semibold hover:bg-amber-600 dark:hover:bg-amber-600 hover:text-white ${active ? 'bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-50' : 'dark:bg-none dark:text-slate-200 dark:hover:text-white dark:hover:bg-amber-600'}`
+                                            `relative inline-flex justify-start items-baseline gap-2 rounded-lg px-3.5 py-2.5 text-sm font-semibold hover:bg-sky-600 dark:hover:bg-sky-600 hover:text-white ${active ? 'bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-50' : 'dark:bg-none dark:text-slate-200 dark:hover:text-white dark:hover:bg-sky-600'}`
                                         }
                                         value={city}
                                     >
@@ -135,14 +165,17 @@ export default function SearchBar() {
                                                     className={`block truncate ${selected ? 'font-medium' : 'font-normal'
                                                         }`}
                                                 >
-                                                    {city.name}
+                                                    {city.mainText}
+                                                </span>
+                                                <span className="text-slate-500 dark:text-slate-400">
+                                                    {city.secondaryText}
                                                 </span>
                                                 {selected ? (
                                                     <span
-                                                        className={`absolute inset-y-0 right-0 flex items-center pr-3 ${active ? 'text-white' : 'text-amber-600'
+                                                        className={`absolute inset-y-0 right-0 flex items-center pr-3 ${active ? 'text-white' : 'text-sky-600'
                                                             }`}
                                                     >
-                                                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                                                        <Location variant='TwoTone' color="currentColor" className="h-5 w-5" aria-hidden="true" />
                                                     </span>
                                                 ) : null}
                                             </>
@@ -159,16 +192,3 @@ export default function SearchBar() {
 }
 
 
-async function fetchCities(searchQuery: string) {
-
-    const Cities = axios.get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyCQe29u1Q8RryIv57m22J0XVu6CygHa8Q4&input=${searchQuery}`)
-        .then((response) => {
-            return response.data.predictions;
-        })
-        .catch((error) => {
-            console.log(`error: `, error);
-            return [];
-        })
-
-    return Cities;
-}

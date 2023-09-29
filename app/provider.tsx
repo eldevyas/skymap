@@ -22,7 +22,7 @@ export default function Provider({ children }: {
                     className="bg-slate-100 dark:bg-slate-950 h-full min-h-screen w-full flex flex-col justify-start items-start z-10 background"
                 >
                     <NextTopLoader
-                        color={Colors.amber[500]}
+                        color={Colors.sky[500]}
                         initialPosition={0.08}
                         crawlSpeed={200}
                         height={5}
@@ -30,7 +30,7 @@ export default function Provider({ children }: {
                         showSpinner={false}
                         easing="ease"
                         speed={200}
-                        shadow={`0 0 10px ${Colors.blue["500"]},0 0 5px ${Colors.amber["500"]}`}
+                        shadow={`0 0 10px ${Colors.blue["500"]},0 0 5px ${Colors.sky["500"]}`}
                     />
                     <Toaster
                         position="top-center"
@@ -88,7 +88,7 @@ export default function Provider({ children }: {
                                         {t.type !== "loading" && (
                                             <button
                                                 type="button"
-                                                className="-mx-1.5 -my-1.5 ml-auto inline-flex h-8 w-8 rounded-xl slate p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-900 dark:bg-slate-950 dark:text-slate-500 dark:hover:bg-slate-900 dark:hover:text-white"
+                                                className="-mx-1.5 -my-1.5 ml-auto inline-flex h-8 w-8 rounded-xl slate p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-900 dark:bg-slate-800 dark:text-slate-500 dark:hover:bg-slate-900 dark:hover:text-white"
                                                 data-dismiss-target="#toast-default"
                                                 aria-label="Close"
                                                 onClick={() => toast.dismiss(t.id)}

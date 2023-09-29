@@ -40,7 +40,7 @@ export default function Home() {
                         <Link href="/dashboard" className="flex items-center">
                             <button
                                 type="button"
-                                className="inline-flex w-full sm:w-auto text-center justify-center items-center gap-2 rounded-xl bg-amber-600 dark:bg-slate-50 px-3.5 py-2.5 text-sm font-semibold text-slate-50 dark:text-slate-800 shadow-sm hover:bg-amber-700 dark:hover:bg-slate-100"
+                                className="inline-flex w-full sm:w-auto text-center justify-center items-center gap-2 rounded-xl bg-sky-600 dark:bg-slate-50 px-3.5 py-2.5 text-sm font-semibold text-slate-50 dark:text-slate-800 shadow-sm hover:bg-sky-700 dark:hover:bg-slate-100"
                             >
                                 <PresentationChartBarIcon
                                     className="h-6 w-6 text-slate-300 dark:text-slate-600"

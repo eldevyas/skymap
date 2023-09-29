@@ -33,7 +33,7 @@ export default function Error({
     return (
         <main className="grid min-h-full place-items-center w-full px-6 py-24 sm:py-32 lg:px-8">
             <div className="text-center max-w-xs md:max-w-xl">
-                <p className="text-base font-semibold text-amber-600">500</p>
+                <p className="text-base font-semibold text-sky-600">500</p>
                 <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-5xl">
                     Something went wrong!
                 </h1>
@@ -56,7 +56,7 @@ export default function Error({
                 <div className="mt-10 flex flex-wrap items-center justify-between gap-3">
                     <Link
                         href="/"
-                        className="flex-1 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-amber-600 hover:bg-amber-800"
+                        className="flex-1 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-sky-600 hover:bg-sky-800"
                     >
                         <span className="mr-2 text-md font-semibold whitespace-nowrap">
                             Go back home
@@ -67,7 +67,7 @@ export default function Error({
                         onClick={() => {
                             reset();
                         }}
-                        className="flex-1 md:mt-0 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center rounded-lg text-amber-800 bg-amber-600/25 hover:bg-amber-600/50 dark:text-amber-300 dark:bg-amber-600/50 dark:hover:bg-amber-600/75"
+                        className="flex-1 md:mt-0 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center rounded-lg text-sky-800 bg-sky-600/25 hover:bg-sky-600/50 dark:text-sky-300 dark:bg-sky-600/50 dark:hover:bg-sky-600/75"
                     >
                         <span className="mr-2 text-md font-semibold">
                             Retry
@@ -76,7 +76,7 @@ export default function Error({
                     </div>
                     <div
                         onClick={() => handleClearRedux()}
-                        className="flex-1 md:mt-0 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center rounded-lg text-amber-800 bg-amber-600/25 hover:bg-amber-600/50 dark:text-amber-300 dark:bg-amber-600/50 dark:hover:bg-amber-600/75"
+                        className="flex-1 md:mt-0 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center rounded-lg text-sky-800 bg-sky-600/25 hover:bg-sky-600/50 dark:text-sky-300 dark:bg-sky-600/50 dark:hover:bg-sky-600/75"
                     >
                         <span className="mr-2 text-md font-semibold">
                             Clear Data

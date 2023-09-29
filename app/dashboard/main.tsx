@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react'
-import SearchBar from './interface/search';
+import SearchCity from './interface/searchCity';
 import WeatherOverview from './interface/weatherOverview';
 
 export default function MainDashboard() {
@@ -10,7 +10,7 @@ export default function MainDashboard() {
             <div
                 className="mx-auto relative flex flex-col gap-4"
             >
-                <SearchBar />
+                <SearchCity />
                 <WeatherOverview />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="relative h-96 bg-slate-50 dark:bg-slate-900 px-6 py-4 rounded-3xl sm:px-16 lg:flex lg:gap-x-20 lg:px-24 flex flex-col items-center justify-center p-10 overflow-hidden border border-slate-300 dark:border-slate-600"></div>

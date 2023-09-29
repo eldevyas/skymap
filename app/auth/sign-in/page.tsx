@@ -39,7 +39,7 @@ export default function LoginPage() {
                 <div className="flex flex-row gap-2 justify-between w-full flex-wrap">
                     <button
                         type="button"
-                        className="inline-flex justify-center items-center text-center flex-1 py-2.5 px-5 bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-3xl focus:border-amber-500 w-full p-2.5 dark:bg-slate-900 dark:border-slate-600 dark:placeholder-slate-400 dark:text-white hover:bg-slate-200 dark:hover:border-amber-100 dark:hover:bg-amber-600 dark:hover:text-amber-100"
+                        className="inline-flex justify-center items-center text-center flex-1 py-2.5 px-5 bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-3xl focus:border-sky-500 w-full p-2.5 dark:bg-slate-900 dark:border-slate-600 dark:placeholder-slate-400 dark:text-white hover:bg-slate-200 dark:hover:border-sky-100 dark:hover:bg-sky-600 dark:hover:text-sky-100"
                     >
                         <Google
                             color="currentColor"
@@ -52,7 +52,7 @@ export default function LoginPage() {
                     </button>
                     <button
                         type="button"
-                        className="inline-flex justify-center items-center text-center flex-1 py-2.5 px-5 bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-3xl focus:border-amber-500 w-full p-2.5 dark:bg-slate-900 dark:border-slate-600 dark:placeholder-slate-400 dark:text-white hover:bg-slate-200 dark:hover:border-amber-100 dark:hover:bg-amber-600 dark:hover:text-amber-100"
+                        className="inline-flex justify-center items-center text-center flex-1 py-2.5 px-5 bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-3xl focus:border-sky-500 w-full p-2.5 dark:bg-slate-900 dark:border-slate-600 dark:placeholder-slate-400 dark:text-white hover:bg-slate-200 dark:hover:border-sky-100 dark:hover:bg-sky-600 dark:hover:text-sky-100"
                     >
                         <Facebook
                             color="currentColor"
@@ -98,7 +98,7 @@ export default function LoginPage() {
                             type="email"
                             name="email"
                             id="email"
-                            className="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-3xl focus:ring-amber-500 focus:border-amber-500 block w-full p-2.5 dark:bg-slate-900 dark:border-slate-600 dark:placeholder-slate-400 dark:text-white dark:focus:ring-amber-500 dark:focus:border-amber-500 dark:focus:outline-amber-500"
+                            className="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-3xl focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-slate-900 dark:border-slate-600 dark:placeholder-slate-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500 dark:focus:outline-sky-500"
                             placeholder="mail@example.com"
                             required={false}
                         />
@@ -115,7 +115,7 @@ export default function LoginPage() {
                             name="password"
                             id="password"
                             placeholder="••••••••"
-                            className="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-3xl focus:ring-amber-500 focus:border-amber-500 block w-full p-2.5 dark:bg-slate-900 dark:border-slate-600 dark:placeholder-slate-400 dark:text-white dark:focus:ring-amber-500 dark:focus:border-amber-500 dark:focus:outline-amber-500"
+                            className="bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-3xl focus:ring-sky-500 focus:border-sky-500 block w-full p-2.5 dark:bg-slate-900 dark:border-slate-600 dark:placeholder-slate-400 dark:text-white dark:focus:ring-sky-500 dark:focus:border-sky-500 dark:focus:outline-sky-500"
                             required={false}
                         />
                     </div>
@@ -126,7 +126,7 @@ export default function LoginPage() {
                                     id="remember"
                                     aria-describedby="remember"
                                     type="checkbox"
-                                    className="w-4 h-4 text-amber-600 bg-slate-100 border-slate-300 rounded focus:ring-amber-500 dark:focus:ring-amber-600 dark:ring-offset-slate-800 focus:ring-2 dark:bg-slate-900 dark:border-slate-800"
+                                    className="w-4 h-4 text-sky-600 bg-slate-100 border-slate-300 rounded focus:ring-sky-500 dark:focus:ring-sky-600 dark:ring-offset-slate-800 focus:ring-2 dark:bg-slate-900 dark:border-slate-800"
                                     required={false}
                                 />
                             </div>
@@ -140,13 +140,13 @@ export default function LoginPage() {
                                 </label>
                             </div>
                         </div>
-                        <a className="text-sm font-medium text-amber-500 hover:underline dark:text-amber-500 cursor-pointer">
+                        <a className="text-sm font-medium text-sky-500 hover:underline dark:text-sky-500 cursor-pointer">
                             Forgot password?
                         </a>
                     </div>
                     <button
                         type="submit"
-                        className="inline-flex justify-center items-center gap-2  focus:outline-none w-full text-white bg-amber-700 hover:bg-amber-800 focus:ring-4 focus:ring-amber-300 font-medium rounded-3xl text-sm px-5 py-2.5 mb-2 dark:bg-amber-600 dark:hover:bg-amber-700 dark:focus:ring-amber-900"
+                        className="inline-flex justify-center items-center gap-2  focus:outline-none w-full text-white bg-sky-700 hover:bg-sky-800 focus:ring-4 focus:ring-sky-300 font-medium rounded-3xl text-sm px-5 py-2.5 mb-2 dark:bg-sky-600 dark:hover:bg-sky-700 dark:focus:ring-sky-900"
                     >
                         Sign in
                         <LoginCurve color="currentColor" variant="Bulk" />
@@ -155,7 +155,7 @@ export default function LoginPage() {
                         Don’t have an account yet?{" "}
                         <Link
                             href={"/auth/sign-up"}
-                            className="font-medium text-amber-600 hover:underline dark:text-amber-500"
+                            className="font-medium text-sky-600 hover:underline dark:text-sky-500"
                         >
                             Sign up
                         </Link>
