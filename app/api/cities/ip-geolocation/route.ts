@@ -1,9 +1,8 @@
 import { CityType } from "@/app/context";
 import axios from "axios";
-import { NextApiRequest, NextApiResponse } from "next";
 
 
-export async function GET(request: NextApiRequest, response: NextApiResponse) {
+export async function GET(request: Request, response: Response) {
     const googleMapsAPIKey = process.env.GOOGLE_MAPS_API_KEY;
 
     // Send POST Request to the Google Maps Geolocation API
