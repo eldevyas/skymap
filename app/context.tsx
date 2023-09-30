@@ -160,19 +160,50 @@ export const AppContextProvider = ({ children }: {
 
         const customPromiseForToast = new Promise<CityType>(async (resolve, reject) => {
             // Fetch User Location with GPS Coordinates
-            var userCityLocationWithGPS: CityType | null = await getUserLocationWithCoordinates();
+            var userCityLocationWithGPS: CityType | null = await getUserLocationWithCoordinates()
+                .then((response) => {
+                    // If the response is successful, return the data.
+                    return response;
+                })
+                .catch((error) => {
+                    console.log(error);
+                    toast.error(`Couldn't find your location with GPS.`);
+                    return null;
+                });
+
             var userCityLocationWithIPAddress: CityType | null = null;
 
             // If the user's location was not found, try to fetch it using the IP address.
             if (!userCityLocationWithGPS) {
-                userCityLocationWithIPAddress = await getUserLocationWithIP();
+                userCityLocationWithIPAddress = await getUserLocationWithIP()
+                    .then((response) => {
+                        // If the response is successful, return the data.
+                        return response;
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                        toast.error(`Couldn't find your location with IP Address.`);
+                        return null;
+                    });
             }
 
             // Set the user's location to the first successful fetch.
-            const foundLocation = userCityLocationWithGPS || userCityLocationWithIPAddress;
+            let foundLocation = userCityLocationWithGPS || userCityLocationWithIPAddress;
 
-            // Return the user's location.
-            return resolve(foundLocation);
+            // If the user's location was not found, set it to a default location.
+            if (!foundLocation) {
+                foundLocation = {
+                    id: 1,
+                    mainText: 'London',
+                    secondaryText: 'United Kingdom',
+                    countryCode: 'GB',
+                    latitude: 51.507351,
+                    longitude: -0.127758,
+                };
+            }
+
+            // Return the found location.
+            resolve(foundLocation);
         });
 
         // Show a loading toast
@@ -182,6 +213,8 @@ export const AppContextProvider = ({ children }: {
             error: `Couldn't find your location.`,
         }).then((foundLocation) => {
             userCityLocation = foundLocation;
+        }).catch((error) => {
+            console.log(error);
         });
 
         // If the user's location was not found, set it to a default location.
