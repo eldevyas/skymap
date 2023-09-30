@@ -1,10 +1,6 @@
 import React, { useContext } from 'react';
-import { createClient } from "@google/maps";
-import { Location, Refresh2 } from "iconsax-react";
-import { useEffect, useState } from "react";
-import { getUserLocation } from '@/app/functions/getUserLocation';
-import toast from 'react-hot-toast';
-import AppContext, { CityType } from '@/app/context';
+import { Location } from "iconsax-react";
+import AppContext from '@/app/context';
 
 export default function WaetherOverview() {
     const { values, functions, handlers, utilities } = useContext(AppContext);
@@ -61,7 +57,7 @@ export default function WaetherOverview() {
             <button
                 type='button'
                 className='flex items-center gap-2 text-slate-400 dark:text-slate-400 text-sm font-bold tracking-tight sm:text-md'
-                onClick={utilities.getUserLocationWithGPS}
+                onClick={utilities.getUserLocation}
             >
                 <Location
                     className='h-5 w-5'

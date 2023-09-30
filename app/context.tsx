@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { createContext, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import Fuse from 'fuse.js';
-import { getUserLocation } from './functions/getUserLocation';
+import { getUserLocationWithCoordinates } from './functions/getUserLocation';
 
 export type CityType = {
     id: number | string,
@@ -43,7 +43,7 @@ export type GlobalContextType = {
     }
     utilities: {
         fetchCitiesByQuery: (searchQuery: string) => any,
-        getUserLocationWithGPS: () => Promise<CityType | null>,
+        getUserLocation: () => Promise<CityType | null>,
     }
 }
 
@@ -70,7 +70,7 @@ const AppContext = createContext<GlobalContextType>({
     },
     utilities: {
         fetchCitiesByQuery: async (searchQuery: string) => { },
-        getUserLocationWithGPS: async () => { return null },
+        getUserLocation: async () => { return null },
     }
 });
 
@@ -101,7 +101,7 @@ export const AppContextProvider = ({ children }: {
         setQueryCities] = React.useState<CityType[]>([]);
 
     useEffect(() => {
-        getUserLocationWithGPS();
+        getUserLocation();
     }, [])
 
 
@@ -133,7 +133,7 @@ export const AppContextProvider = ({ children }: {
 
         // Fetch Cities from the API service.
         const Cities = await axios.get(
-            `/api/cities?query=${searchQuery}`
+            `/api/cities/search?query=${searchQuery}`
         )
             .then((response) => {
                 // If there is a response, return it.
@@ -152,11 +152,23 @@ export const AppContextProvider = ({ children }: {
         return Cities;
     }
 
-    async function getUserLocationWithGPS() {
+    async function getUserLocation() {
         // Get User Location - Meanwhile, set Loading to true.
         setLoading(true);
 
-        const userCityLocationWithGPS = await getUserLocation();
+        var userCityLocationWithGPS: CityType = await getUserLocationWithCoordinates();
+
+        // Set to a Fall Back Location if the user has not allowed location access.
+        if (!userCityLocationWithGPS) {
+            userCityLocationWithGPS = {
+                id: 0,
+                mainText: 'No Location Found',
+                secondaryText: 'Please Allow Location Access',
+                countryCode: '',
+                latitude: 0,
+                longitude: 0,
+            };
+        }
 
         // Update Context of User Location
         setUserLocation({
@@ -203,7 +215,7 @@ export const AppContextProvider = ({ children }: {
         },
         utilities: {
             fetchCitiesByQuery,
-            getUserLocationWithGPS,
+            getUserLocation,
         }
     };
 

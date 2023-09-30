@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { CityType } from "../context";
 import axios from "axios";
 
-export async function getUserLocation(): Promise<CityType> {
+export async function getUserLocationWithCoordinates(): Promise<CityType> {
     const googleMapsAPIKey: string | null = process.env.GOOGLE_MAPS_API_KEY || "AIzaSyCQe29u1Q8RryIv57m22J0XVu6CygHa8Q4";
 
     // Only run this function if the Google Maps API Key is set
@@ -13,7 +13,6 @@ export async function getUserLocation(): Promise<CityType> {
     ) {
         return Promise.reject(new Error("Google Maps API Key is not set."));
     }
-
 
     if ("geolocation" in navigator) {
         // Prompt user for permission to access their location
@@ -26,7 +25,7 @@ export async function getUserLocation(): Promise<CityType> {
                     const lng = position.coords.longitude;
 
                     // Get the user's city and country based on their latitude and longitude coordinates
-                    await axios.get(`/api/cities/location?latitude=${lat}&longitude=${lng}`).
+                    await axios.get(`/api/cities/coordinates?latitude=${lat}&longitude=${lng}`).
                         then((response) => {
                             // Get the first city from the response
                             const city = response.data[0];
