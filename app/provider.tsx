@@ -35,6 +35,7 @@ export default function Provider({ children }: {
                     <Toaster
                         position="top-center"
                         toastOptions={{
+                            duration: 5000,
                             className: "cursor-default",
                             style: {
                                 border: "none",

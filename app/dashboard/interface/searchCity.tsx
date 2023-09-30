@@ -6,14 +6,17 @@ import { createClient } from '@google/maps';
 import axios from 'axios';
 import AppContext from '@/app/context';
 import toast from 'react-hot-toast';
+import Flags, { hasFlag } from 'country-flag-icons';
+import Flag from 'country-flag-icons/react/3x2';
+
 
 type City = {
     id: number,
     mainText: string,
     secondaryText: string,
     countryCode: string,
-    lat: number,
-    lng: number,
+    latitude: number,
+    longitude: number,
 }
 
 export default function SearchCity() {
@@ -39,12 +42,8 @@ export default function SearchCity() {
     const filteredCities =
         query === ''
             ? cities
-            : cities.filter((city) =>
-                city.mainText
-                    .toLowerCase()
-                    .replace(/\s+/g, '')
-                    .includes(query.toLowerCase().replace(/\s+/g, ''))
-            )
+            : cities.filter((city) => city.mainText?.toLowerCase().replace(/\s+/g, '').includes(query.toLowerCase().replace(/\s+/g, '')));
+
 
     const handleSearch = async (
         event: React.ChangeEvent<HTMLInputElement>
@@ -52,39 +51,15 @@ export default function SearchCity() {
         setQuery(event.target.value)
 
         // Fetch Cities with the Query
-        const newCities = await utils.fetchCitiesByQuery(event.target.value);
+        const queryCities = await utils.fetchCitiesByQuery(event.target.value);
 
-        const citiesWithDesiredFormat = newCities.map((city: any) => {
-            if (true) {
-                return {
-                    id: city.place_id,
-                    mainText: city.structured_formatting.main_text,
-                    secondaryText: city.structured_formatting.secondary_text,
-                    countryCode: "",
-                    lat: 0,
-                    lng: 0,
-                }
-            }
-        });
-
-        citiesWithDesiredFormat.forEach(async (city: City) => {
-            const { latitude, longitude, countryCode } = await utils.getLatLngAndCountryCode(city.id);
-            city.countryCode = countryCode;
-            city.lat = latitude;
-            city.lng = longitude;
-        });
-
-        if (citiesWithDesiredFormat.length > 0) {
-            setCities(citiesWithDesiredFormat);
-        } else {
-            setCities([]);
-        }
+        setCities(queryCities);
     }
 
     const handleSelection = async (city: City) => {
         // Set Selected City
         setSelected(city);
-        toast.success(`Selected ${city.mainText}!`);
+        toast.success(`You've selected ${city.mainText}.`);
     }
 
     return (
@@ -160,25 +135,11 @@ export default function SearchCity() {
                                         value={city}
                                     >
                                         {({ selected, active }) => (
-                                            <>
-                                                <span
-                                                    className={`block truncate ${selected ? 'font-medium' : 'font-normal'
-                                                        }`}
-                                                >
-                                                    {city.mainText}
-                                                </span>
-                                                <span className="text-slate-500 dark:text-slate-400">
-                                                    {city.secondaryText}
-                                                </span>
-                                                {selected ? (
-                                                    <span
-                                                        className={`absolute inset-y-0 right-0 flex items-center pr-3 ${active ? 'text-white' : 'text-sky-600'
-                                                            }`}
-                                                    >
-                                                        <Location variant='TwoTone' color="currentColor" className="h-5 w-5" aria-hidden="true" />
-                                                    </span>
-                                                ) : null}
-                                            </>
+                                            <CityOption
+                                                city={city}
+                                                selected={selected}
+                                                active={active}
+                                            />
                                         )}
                                     </Combobox.Option>
                                 ))
@@ -192,3 +153,19 @@ export default function SearchCity() {
 }
 
 
+const CityOption = ({ city, selected, active }: { city: City; selected: boolean; active: boolean }) => {
+    const FlagIcon: any = Flag[city.countryCode];
+    return (
+        <>
+            <span className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}>{city.mainText}</span>
+            <span className="text-slate-500 dark:text-slate-400">{city.secondaryText}</span>
+            <span className={`absolute inset-y-0 right-0 flex items-center pr-3 ${active ? 'text-white' : 'text-sky-600'}`}>
+                {hasFlag(city.countryCode) ? (
+                    <FlagIcon className="h-5 w-5" color="currentColor" variant="TwoTone" />
+                ) : (
+                    <span className="h-5 w-5">{city.countryCode}</span>
+                )}
+            </span>
+        </>
+    );
+};
