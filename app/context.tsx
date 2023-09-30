@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { createContext, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import Fuse from 'fuse.js';
-import { getUserLocationWithCoordinates } from './functions/getUserLocation';
+import { getUserLocationWithCoordinates, getUserLocationWithIP } from './functions/getUserLocation';
 
 export type CityType = {
     id: number | string,
@@ -152,41 +152,64 @@ export const AppContextProvider = ({ children }: {
         return Cities;
     }
 
-    async function getUserLocation() {
+    async function getUserLocation(): Promise<CityType> {
         // Get User Location - Meanwhile, set Loading to true.
         setLoading(true);
 
-        var userCityLocationWithGPS: CityType = await getUserLocationWithCoordinates();
+        var userCityLocation: CityType | null = null;
 
-        // Set to a Fall Back Location if the user has not allowed location access.
-        if (!userCityLocationWithGPS) {
-            userCityLocationWithGPS = {
-                id: 0,
-                mainText: 'No Location Found',
-                secondaryText: 'Please Allow Location Access',
-                countryCode: '',
-                latitude: 0,
-                longitude: 0,
+        const customPromiseForToast = new Promise<CityType>(async (resolve, reject) => {
+            // Fetch User Location with GPS Coordinates
+            var userCityLocationWithGPS: CityType | null = await getUserLocationWithCoordinates();
+            var userCityLocationWithIPAddress: CityType | null = null;
+
+            // If the user's location was not found, try to fetch it using the IP address.
+            if (!userCityLocationWithGPS) {
+                userCityLocationWithIPAddress = await getUserLocationWithIP();
+            }
+
+            // Set the user's location to the first successful fetch.
+            const foundLocation = userCityLocationWithGPS || userCityLocationWithIPAddress;
+
+            // Return the user's location.
+            return resolve(foundLocation);
+        });
+
+        // Show a loading toast
+        await toast.promise(customPromiseForToast, {
+            loading: `Getting your location...`,
+            success: `Found your location!`,
+            error: `Couldn't find your location.`,
+        }).then((foundLocation) => {
+            userCityLocation = foundLocation;
+        });
+
+        // If the user's location was not found, set it to a default location.
+        if (!userCityLocation) {
+            userCityLocation = {
+                id: 1,
+                mainText: 'London',
+                secondaryText: 'United Kingdom',
+                countryCode: 'GB',
+                latitude: 51.507351,
+                longitude: -0.127758,
             };
         }
 
         // Update Context of User Location
         setUserLocation({
-            latitude: userCityLocationWithGPS.latitude,
-            longitude: userCityLocationWithGPS.longitude,
+            latitude: userCityLocation.latitude,
+            longitude: userCityLocation.longitude,
         });
 
         // Update Selected City
-        setSelectedCity(userCityLocationWithGPS);
-
-        // Inform the user that their location has been updated.
-        toast.success(`Your location has been updated to ${userCityLocationWithGPS.mainText}.`);
+        setSelectedCity(userCityLocation);
 
         // Set Loading to false
         setLoading(false);
 
         // Return the User's Location.
-        return userCityLocationWithGPS;
+        return userCityLocation;
     }
 
 

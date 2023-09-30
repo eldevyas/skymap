@@ -3,14 +3,12 @@ import toast from "react-hot-toast";
 import { CityType } from "../context";
 import axios from "axios";
 
+// Get the user's location based on their coordinates
 export async function getUserLocationWithCoordinates(): Promise<CityType> {
-    const googleMapsAPIKey: string | null = process.env.GOOGLE_MAPS_API_KEY || "AIzaSyCQe29u1Q8RryIv57m22J0XVu6CygHa8Q4";
+    const googleMapsAPIKey = process.env.GOOGLE_MAPS_API_KEY || "AIzaSyCQe29u1Q8RryIv57m22J0XVu6CygHa8Q4";
 
     // Only run this function if the Google Maps API Key is set
-    if (googleMapsAPIKey === ""
-        || googleMapsAPIKey === undefined
-        || googleMapsAPIKey === null
-    ) {
+    if (!googleMapsAPIKey) {
         return Promise.reject(new Error("Google Maps API Key is not set."));
     }
 
@@ -25,20 +23,19 @@ export async function getUserLocationWithCoordinates(): Promise<CityType> {
                     const lng = position.coords.longitude;
 
                     // Get the user's city and country based on their latitude and longitude coordinates
-                    await axios.get(`/api/cities/coordinates?latitude=${lat}&longitude=${lng}`).
-                        then((response) => {
-                            // Get the first city from the response
-                            const city = response.data[0];
+                    try {
+                        const response = await axios.get(`/api/cities/coordinates?latitude=${lat}&longitude=${lng}`);
+                        const city = response.data[0];
 
-                            // Resolve the city
-                            resolve(city);
-                        }).catch
-                        ((error) => {
-                            // Log the error
-                            console.log("Error getting user's location through API Service: ", error);
+                        // Resolve the city
+                        resolve(city);
+                    } catch (error) {
+                        // Log the error
+                        console.log("Error getting user's location through API Service: ", error);
 
-                            reject(error);
-                        });
+                        // Reject the promise with the error
+                        reject(error);
+                    }
                 },
                 // Error callback function
                 (error) => {
@@ -50,4 +47,26 @@ export async function getUserLocationWithCoordinates(): Promise<CityType> {
     } else {
         return Promise.reject(new Error("Geolocation is not supported by this browser."));
     }
+}
+
+// Get the location of the user based on their IP address
+export async function getUserLocationWithIP(): Promise<CityType> {
+    const googleMapsAPIKey = process.env.GOOGLE_MAPS_API_KEY || null;
+
+    return new Promise(async (resolve, reject) => {
+        // Get the user's city and country based on their latitude and longitude coordinates
+        try {
+            const response = await axios.get(`/api/cities/ip-geolocation`);
+            const city = response.data[0];
+
+            // Resolve the city
+            resolve(city);
+        } catch (error) {
+            // Log the error
+            console.log("Error getting user's location through API Service: ", error);
+
+            // Reject the promise with the error
+            reject(error);
+        }
+    });
 }
