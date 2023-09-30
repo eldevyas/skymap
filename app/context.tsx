@@ -1,10 +1,11 @@
 import axios from 'axios';
-import React, { createContext } from 'react';
+import React, { createContext, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import Fuse from 'fuse.js';
+import { getUserLocation } from './functions/getUserLocation';
 
 export type CityType = {
-    id: number,
+    id: number | string,
     mainText: string,
     secondaryText: string,
     countryCode: string,
@@ -21,6 +22,7 @@ export type QueryType = string | '';
 
 export type GlobalContextType = {
     values: {
+        isLoading: boolean,
         query: QueryType,
         userLocation: LocationType | null,
         selectedCity: CityType | null,
@@ -28,6 +30,7 @@ export type GlobalContextType = {
         queryCities: CityType[],
     },
     functions: {
+        setLoading: (isLoading: boolean) => void,
         setQuery: (query: QueryType) => void,
         setUserLocation: (location: LocationType) => void,
         setSelectedCity: (city: CityType) => void,
@@ -40,11 +43,13 @@ export type GlobalContextType = {
     }
     utilities: {
         fetchCitiesByQuery: (searchQuery: string) => any,
+        getUserLocationWithGPS: () => Promise<CityType | null>,
     }
 }
 
 const AppContext = createContext<GlobalContextType>({
     values: {
+        isLoading: true,
         query: '',
         userLocation: null,
         selectedCity: null,
@@ -52,6 +57,7 @@ const AppContext = createContext<GlobalContextType>({
         queryCities: [],
     },
     functions: {
+        setLoading: (isLoading: boolean) => { },
         setQuery: (search: any) => { },
         setUserLocation: (location: any) => { },
         setSelectedCity: (city: any) => { },
@@ -64,6 +70,7 @@ const AppContext = createContext<GlobalContextType>({
     },
     utilities: {
         fetchCitiesByQuery: async (searchQuery: string) => { },
+        getUserLocationWithGPS: async () => { return null },
     }
 });
 
@@ -71,6 +78,9 @@ const AppContext = createContext<GlobalContextType>({
 export const AppContextProvider = ({ children }: {
     children: React.ReactNode
 }) => {
+    // Loading - Whether the app is loading or not.
+    const [isLoading, setLoading] = React.useState<boolean>(true);
+
     // Query - String Search Text to find cities by their name.
     const [query, setQuery] = React.useState<string | ''>('');
 
@@ -89,6 +99,10 @@ export const AppContextProvider = ({ children }: {
     // queryCities - The Cities that match the user's search query.
     const [queryCities,
         setQueryCities] = React.useState<CityType[]>([]);
+
+    useEffect(() => {
+        getUserLocationWithGPS();
+    }, [])
 
 
 
@@ -109,19 +123,15 @@ export const AppContextProvider = ({ children }: {
         // Set Selected City
         setSelectedCity(city);
 
-        // Set the Query to the new value.
-        setQuery(city.mainText);
-
         // Inform the user that they have selected a new city.
         toast.success(`You've selected ${city.mainText}.`);
     }
 
     async function fetchCitiesByQuery(searchQuery: string) {
+        // Set Loading to true
+        setLoading(true);
+
         // Fetch Cities from the API service.
-        // THE API IS CUSTOMIZED IN THE APP'S API FOLDER AND THE ENVIRONMENT VARIABLES.
-
-        // The API Responsible for fetching cities is "/api/cities?query=${searchQuery}".
-
         const Cities = await axios.get(
             `/api/cities?query=${searchQuery}`
         )
@@ -135,8 +145,36 @@ export const AppContextProvider = ({ children }: {
                 return [];
             });
 
+        // Set Loading to false
+        setLoading(false);
+
         // Return the Cities.
         return Cities;
+    }
+
+    async function getUserLocationWithGPS() {
+        // Get User Location - Meanwhile, set Loading to true.
+        setLoading(true);
+
+        const userCityLocationWithGPS = await getUserLocation();
+
+        // Update Context of User Location
+        setUserLocation({
+            latitude: userCityLocationWithGPS.latitude,
+            longitude: userCityLocationWithGPS.longitude,
+        });
+
+        // Update Selected City
+        setSelectedCity(userCityLocationWithGPS);
+
+        // Inform the user that their location has been updated.
+        toast.success(`Your location has been updated to ${userCityLocationWithGPS.mainText}.`);
+
+        // Set Loading to false
+        setLoading(false);
+
+        // Return the User's Location.
+        return userCityLocationWithGPS;
     }
 
 
@@ -144,6 +182,7 @@ export const AppContextProvider = ({ children }: {
         GlobalContextType
         = {
         values: {
+            isLoading,
             query,
             selectedCity,
             userLocation,
@@ -151,6 +190,7 @@ export const AppContextProvider = ({ children }: {
             queryCities
         },
         functions: {
+            setLoading,
             setQuery,
             setUserLocation,
             setSelectedCity,
@@ -163,6 +203,7 @@ export const AppContextProvider = ({ children }: {
         },
         utilities: {
             fetchCitiesByQuery,
+            getUserLocationWithGPS,
         }
     };
 
