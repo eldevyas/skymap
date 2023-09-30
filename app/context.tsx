@@ -1,38 +1,68 @@
 import axios from 'axios';
 import React, { createContext } from 'react';
+import toast from 'react-hot-toast';
+import Fuse from 'fuse.js';
 
-type GlobalContextType = {
-    getters: {
-        selectedCity: any,
-        userLocation: any,
-        search: string,
-        weatherData: any
+export type CityType = {
+    id: number,
+    mainText: string,
+    secondaryText: string,
+    countryCode: string,
+    latitude: number,
+    longitude: number,
+}
+
+export type LocationType = {
+    latitude: number,
+    longitude: number,
+}
+
+export type QueryType = string | '';
+
+export type GlobalContextType = {
+    values: {
+        query: QueryType,
+        userLocation: LocationType | null,
+        selectedCity: CityType | null,
+        weatherData: any,
+        queryCities: CityType[],
     },
-    setters: {
-        setSelectedCity: (city: any) => void,
-        setUserLocation: (location: any) => void,
-        setSearch: (search: string) => void,
-        setWeatherData: (weatherData: any) => void
+    functions: {
+        setQuery: (query: QueryType) => void,
+        setUserLocation: (location: LocationType) => void,
+        setSelectedCity: (city: CityType) => void,
+        setWeatherData: (weatherData: any) => void,
+        setQueryCities: (cities: CityType[]) => void,
     },
-    utils: {
+    handlers: {
+        handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void,
+        handleSelection: (city: CityType) => void,
+    }
+    utilities: {
         fetchCitiesByQuery: (searchQuery: string) => any,
     }
 }
 
 const AppContext = createContext<GlobalContextType>({
-    getters: {
-        selectedCity: null,
+    values: {
+        query: '',
         userLocation: null,
-        search: '',
-        weatherData: null
+        selectedCity: null,
+        weatherData: null,
+        queryCities: [],
     },
-    setters: {
-        setSelectedCity: (city: any) => { },
+    functions: {
+        setQuery: (search: any) => { },
         setUserLocation: (location: any) => { },
-        setSearch: (search: any) => { },
-        setWeatherData: (weatherData: any) => { }
+        setSelectedCity: (city: any) => { },
+        setWeatherData: (weatherData: any) => { },
+        setQueryCities: (cities: any) => { },
     },
-    utils: {
+    handlers: {
+        handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => { },
+        handleSelection: (city: CityType) => { },
+    },
+    utilities: {
         fetchCitiesByQuery: async (searchQuery: string) => { },
     }
 });
@@ -41,74 +71,97 @@ const AppContext = createContext<GlobalContextType>({
 export const AppContextProvider = ({ children }: {
     children: React.ReactNode
 }) => {
-    const [selectedCity,
-        setSelectedCity] = React.useState(null);
+    // Query - String Search Text to find cities by their name.
+    const [query, setQuery] = React.useState<string | ''>('');
+
+    // User Location - The User's current location - Only present if they have allowed the browser to access it.
     const [userLocation,
-        setUserLocation] = React.useState(null);
-    const [search,
-        setSearch] = React.useState('');
+        setUserLocation] = React.useState<LocationType | null>(null);
+
+    // Selected City - The City that the user has selected to view the weather for.
+    const [selectedCity,
+        setSelectedCity] = React.useState<CityType | null>(null);
+
+    // Weather Data - The Weather Data for the selected City.
     const [weatherData,
         setWeatherData] = React.useState(null);
 
+    // queryCities - The Cities that match the user's search query.
+    const [queryCities,
+        setQueryCities] = React.useState<CityType[]>([]);
+
+
+
+    const handleSearch = async (
+        event: React.ChangeEvent<HTMLInputElement>
+    ) => {
+        // Set the Query to the new value.
+        setQuery(event.target.value)
+
+        // Fetch Cities with the new Query.
+        const queryCitiesResult = await fetchCitiesByQuery(event.target.value);
+
+        // Update the Cities with the new Query results. 
+        setQueryCities(queryCitiesResult);
+    }
+
+    const handleSelection = async (city: CityType) => {
+        // Set Selected City
+        setSelectedCity(city);
+
+        // Set the Query to the new value.
+        setQuery(city.mainText);
+
+        // Inform the user that they have selected a new city.
+        toast.success(`You've selected ${city.mainText}.`);
+    }
+
     async function fetchCitiesByQuery(searchQuery: string) {
-        const Cities = axios
-            .get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${process.env.GOOGLE_MAPS_API_KEY || "AIzaSyCQe29u1Q8RryIv57m22J0XVu6CygHa8Q4"}&input=${searchQuery}`)
-            .then(async (response) => {
-                const Predictions = response.data.predictions.filter((prediction: any) => {
-                    return prediction.types.includes('locality');
-                });
+        // Fetch Cities from the API service.
+        // THE API IS CUSTOMIZED IN THE APP'S API FOLDER AND THE ENVIRONMENT VARIABLES.
 
-                // Wrap the map function in another async function to wait for the promises to resolve before accessing the Cities array.
-                async function fetchCityDetails(prediction: any) {
-                    const response = await fetch(`https://maps.googleapis.com/maps/api/place/details/json?key=${process.env.GOOGLE_MAPS_API_KEY || "AIzaSyCQe29u1Q8RryIv57m22J0XVu6CygHa8Q4"}&place_id=${prediction.place_id}`);
-                    const json = await response.json();
+        // The API Responsible for fetching cities is "/api/cities?query=${searchQuery}".
 
-                    const { lat, lng } = json.result.geometry.location;
-                    const countryCode = json
-                        .result
-                        .address_components
-                        .find((component: {
-                            types: string | string[];
-                        }) => component.types.includes('country'))
-                        .short_name;
-
-                    return {
-                        id: prediction.place_id,
-                        mainText: prediction.structured_formatting.main_text,
-                        secondaryText: prediction.structured_formatting.secondary_text,
-                        countryCode: countryCode,
-                        latitude: lat,
-                        longitude: lng,
-                    };
-                }
-
-                const Cities = await Promise.all(Predictions.map(fetchCityDetails));
-
-                return Cities;
+        const Cities = await axios.get(
+            `/api/cities?query=${searchQuery}`
+        )
+            .then((response) => {
+                // If there is a response, return it.
+                return response.data;
             })
             .catch((error) => {
-                console.log(`error: `, error);
+                // If there is an error, log it.
+                console.log(error);
                 return [];
             });
 
+        // Return the Cities.
         return Cities;
     }
 
 
-    const contextValue = {
-        getters: {
+    const contextValue:
+        GlobalContextType
+        = {
+        values: {
+            query,
             selectedCity,
             userLocation,
-            search,
-            weatherData
+            weatherData,
+            queryCities
         },
-        setters: {
-            setSelectedCity,
+        functions: {
+            setQuery,
             setUserLocation,
-            setSearch,
-            setWeatherData
+            setSelectedCity,
+            setWeatherData,
+            setQueryCities,
         },
-        utils: {
+        handlers: {
+            handleSearch,
+            handleSelection,
+        },
+        utilities: {
             fetchCitiesByQuery,
         }
     };
