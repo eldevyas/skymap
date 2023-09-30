@@ -154,7 +154,13 @@ export default function SearchCity() {
 
 
 const CityOption = ({ city, selected, active }: { city: City; selected: boolean; active: boolean }) => {
-    const FlagIcon: any = Flag[city.countryCode];
+    const Code: any = city.countryCode;
+    interface FlagType {
+        [key: string]: any;
+    }
+
+    const FlagIcon: any = (Flag as FlagType)[Code];
+
     return (
         <>
             <span className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}>{city.mainText}</span>
