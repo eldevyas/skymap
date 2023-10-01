@@ -52,7 +52,7 @@ export default function NavBar() {
                 <Link href="/auth/sign-in" className="flex items-center">
                     <button
                         type="button"
-                        className="inline-flex text-center justify-center items-center gap-2 rounded-xl bg-slate-800 text-slate-200 px-3.5 py-2.5 text-sm font-semibold hover:bg-slate-900 dark:bg-sky-600 dark:hover:bg-sky-700 dark:text-text-sky-200"
+                        className="inline-flex text-center justify-center items-center gap-2 rounded-xl bg-slate-800 text-slate-200 px-3.5 py-2.5 text-sm font-semibold hover:bg-slate-900 dark:bg-amber-600 dark:hover:bg-amber-700 dark:text-text-amber-200"
                     >
                         <Lock variant="Bulk" color="currentColor" />
                         <span className="hidden text-sm font-semibold md:block">
@@ -88,7 +88,7 @@ function ThemeDropdown() {
             onClick={() => { setTheme(themeName); close() }}
             className={`
         inline-flex justify-start items-baseline gap-2 rounded-lg px-3.5 py-2.5 text-sm font-semibold
-        hover:bg-sky-600 dark:hover:bg-sky-600 hover:text-white ${ThemeState === themeName ? 'bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-50' : 'dark:bg-none dark:text-slate-200 dark:hover:text-white dark:hover:bg-sky-600'}
+        hover:bg-amber-600 dark:hover:bg-amber-600 hover:text-white ${ThemeState === themeName ? 'bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-50' : 'dark:bg-none dark:text-slate-200 dark:hover:text-white dark:hover:bg-amber-600'}
       `}
         >
             <span className="flex items-center">

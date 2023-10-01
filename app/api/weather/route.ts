@@ -4,67 +4,50 @@ import Fuse from "fuse.js";
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url)
-    const searchQuery = searchParams.get('query')
+
+    const openWeatherApiKey = process.env.OPEN_WEATHER_API_KEY;
+
+    const lat = searchParams.get('lat');
+    const lon = searchParams.get('lon');
 
 
-    const googleMapsAPIKey = process.env.GOOGLE_MAPS_API_KEY;
+    if (!openWeatherApiKey) {
+        return new Response(JSON.stringify({
+            Error: "Open Weather API Key not found!",
+            Message: "Please add OPEN_WEATHER_API_KEY to your environment variables.",
+        }), {
+            headers: {
+                'content-type': 'application/json;charset=UTF-8',
+            },
+        }), 403;
+    }
 
-    const googleMapsClient = require('@google/maps').createClient({
-        key: googleMapsAPIKey
-    });
-
-    const Cities: CityType[] = await axios
-        .get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${process.env.GOOGLE_MAPS_API_KEY}&input=${searchQuery}`)
-        .then(async (response) => {
-            const Predictions = response.data.predictions.filter((prediction: any) => {
-                return prediction.types.includes('locality');
-            });
-
-            // Wrap the map function in another async function to wait for the promises to resolve before accessing the Cities array.
-            async function fetchCityDetails(prediction: any) {
-                const response = await fetch(`https://maps.googleapis.com/maps/api/place/details/json?key=${process.env.GOOGLE_MAPS_API_KEY || "AIzaSyCQe29u1Q8RryIv57m22J0XVu6CygHa8Q4"}&place_id=${prediction.place_id}`);
-                const json = await response.json();
-
-                const { lat, lng } = json.result.geometry.location;
-                const countryCode = json
-                    .result
-                    .address_components
-                    .find((component: {
-                        types: string | string[];
-                    }) => component.types.includes('country'))
-                    .short_name;
-
-                return {
-                    id: prediction.place_id,
-                    mainText: prediction.structured_formatting.main_text,
-                    secondaryText: prediction.structured_formatting.secondary_text,
-                    countryCode: countryCode,
-                    latitude: lat,
-                    longitude: lng,
-                };
-            }
-
-            const Cities = await Promise.all(Predictions.map(fetchCityDetails));
-
-            return Cities;
-        })
+    const currentWeatherData = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}&units=metric`)
+        .then((response) => response.data)
         .catch((error) => {
-            console.log(`error: `, error);
+            console.error(error);
             return [];
         });
 
-    // Return the Cities from the Fuse Search if the search query is not empty.
-    const searchWithFuse = new Fuse(Cities, {
-        keys: ['mainText', 'secondaryText'],
-        threshold: 0.3,
-    });
+    const hourlyForecastData = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}&units=metric`)
+        .then((response) => response.data)
+        .catch((error) => {
+            console.error(error);
+            return [];
+        });
 
-    const searchResults = searchQuery ? searchWithFuse.search(searchQuery) : searchWithFuse.search('');
+    const dailyForecastData = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}&units=metric`)
+        .then((response) => response.data)
+        .catch((error) => {
+            console.error(error);
+            return [];
+        });
 
-    // Convert the Fuse Search Results to an Array of Cities.
-    const filteredCitiesResult = searchResults.map((result) => result.item);
-
-    return new Response(JSON.stringify(filteredCitiesResult), {
+    return new Response(JSON.stringify({
+        current: currentWeatherData,
+        hourlyForecast: hourlyForecastData,
+        dailyForecast: dailyForecastData,
+    }), {
         headers: {
             'content-type': 'application/json;charset=UTF-8',
         },

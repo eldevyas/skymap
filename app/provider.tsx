@@ -22,7 +22,7 @@ export default function Provider({ children }: {
                     className="bg-slate-100 dark:bg-slate-950 h-full min-h-screen w-full flex flex-col justify-start items-start z-10 background"
                 >
                     <NextTopLoader
-                        color={Colors.sky[500]}
+                        color={Colors.amber[500]}
                         initialPosition={0.08}
                         crawlSpeed={200}
                         height={5}
@@ -30,7 +30,7 @@ export default function Provider({ children }: {
                         showSpinner={false}
                         easing="ease"
                         speed={200}
-                        shadow={`0 0 10px ${Colors.blue["500"]},0 0 5px ${Colors.sky["500"]}`}
+                        shadow={`0 0 10px ${Colors.blue["500"]},0 0 5px ${Colors.amber["500"]}`}
                     />
                     <Toaster
                         position="top-center"

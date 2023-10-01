@@ -25,8 +25,12 @@ export type GlobalContextType = {
         isLoading: boolean,
         query: QueryType,
         userLocation: LocationType | null,
-        selectedCity: CityType | null,
-        weatherData: any,
+        selectedCity: CityType,
+        weatherData: {
+            current: currentWeatherType,
+            hourlyForecast: any,
+            dailyForecast: any,
+        } | null,
         queryCities: CityType[],
     },
     functions: {
@@ -44,6 +48,7 @@ export type GlobalContextType = {
     utilities: {
         fetchCitiesByQuery: (searchQuery: string) => any,
         getUserLocation: () => Promise<CityType | null>,
+        getWeatherData: (city: CityType) => any,
     }
 }
 
@@ -52,7 +57,14 @@ const AppContext = createContext<GlobalContextType>({
         isLoading: true,
         query: '',
         userLocation: null,
-        selectedCity: null,
+        selectedCity: {
+            id: 1,
+            mainText: 'London',
+            secondaryText: 'United Kingdom',
+            countryCode: 'GB',
+            latitude: 51.507351,
+            longitude: -0.127758,
+        },
         weatherData: null,
         queryCities: [],
     },
@@ -71,6 +83,7 @@ const AppContext = createContext<GlobalContextType>({
     utilities: {
         fetchCitiesByQuery: async (searchQuery: string) => { },
         getUserLocation: async () => { return null },
+        getWeatherData: async (city: CityType) => { },
     }
 });
 
@@ -90,7 +103,14 @@ export const AppContextProvider = ({ children }: {
 
     // Selected City - The City that the user has selected to view the weather for.
     const [selectedCity,
-        setSelectedCity] = React.useState<CityType | null>(null);
+        setSelectedCity] = React.useState<CityType>({
+            id: 1,
+            mainText: 'London',
+            secondaryText: 'United Kingdom',
+            countryCode: 'GB',
+            latitude: 51.507351,
+            longitude: -0.127758,
+        });
 
     // Weather Data - The Weather Data for the selected City.
     const [weatherData,
@@ -103,6 +123,13 @@ export const AppContextProvider = ({ children }: {
     useEffect(() => {
         getUserLocation();
     }, [])
+
+    // useEffect for when the selectedCity changes.
+    useEffect(() => {
+        if (selectedCity) {
+            getWeatherData(selectedCity);
+        }
+    }, [selectedCity])
 
 
 
@@ -245,6 +272,44 @@ export const AppContextProvider = ({ children }: {
         return userCityLocation;
     }
 
+    const getWeatherData = async (city: CityType) => {
+        // Set Loading to true
+        setLoading(true);
+
+        toast.loading(`Getting weather data for ${city.mainText}...`,
+            {
+                id: `weatherDataLoadingToast`,
+            }
+        );
+
+        // Fetch Weather Data from the API service.
+        const weatherData = await axios.get(
+            `/api/weather?lat=${city.latitude}&lon=${city.longitude}`
+        )
+            .then((response) => {
+                // If there is a response, return it.
+                return response.data;
+            })
+            .catch((error) => {
+                // If there is an error, log it.
+                console.log(error);
+                return null;
+            });
+
+        // Set Loading to false
+        setLoading(false);
+
+        toast.dismiss(`weatherDataLoadingToast`);
+
+        // Set Weather Data (if it exists)
+        if (weatherData) {
+            setWeatherData(weatherData);
+        }
+
+        // Return the Weather Data.
+        return weatherData;
+    };
+
 
     const contextValue:
         GlobalContextType
@@ -272,6 +337,7 @@ export const AppContextProvider = ({ children }: {
         utilities: {
             fetchCitiesByQuery,
             getUserLocation,
+            getWeatherData,
         }
     };
 
@@ -281,3 +347,52 @@ export const AppContextProvider = ({ children }: {
 };
 
 export default AppContext;
+
+
+interface currentWeatherType {
+    coord: {
+        lon: number;
+        lat: number;
+    };
+    weather: {
+        id: number;
+        main: string;
+        description: string;
+        icon: string;
+    }[];
+    base: string;
+    main: {
+        temp: number;
+        feels_like: number;
+        temp_min: number;
+        temp_max: number;
+        pressure: number;
+        humidity: number;
+        sea_level: number;
+        grnd_level: number;
+    };
+    visibility: number;
+    wind: {
+        speed: number;
+        deg: number;
+        gust: number;
+    };
+    rain: {
+        "1h": number;
+    };
+    clouds: {
+        all: number;
+    };
+    dt: number;
+    sys: {
+        type: number;
+        id: number;
+        country: string;
+        sunrise: number;
+        sunset: number;
+    };
+    timezone: number;
+    id: number;
+    name: string;
+    cod: number;
+}
