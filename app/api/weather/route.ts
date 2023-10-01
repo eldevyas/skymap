@@ -19,7 +19,7 @@ export async function GET(request: Request) {
             headers: {
                 'content-type': 'application/json;charset=UTF-8',
             },
-        }), 403;
+        });
     }
 
     const currentWeatherData = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}&units=metric`)
