@@ -1,8 +1,21 @@
 {
     "name": "SkyMap Weather",
     "short_name": "SkyMap",
+    "description": "SkyMap Weather is a simple and intuitive weather app for your everyday use. It is designed to be as simple as possible. With just one click you can check the weather for today, the weather for tomorrow and the forecast for the next 10 days.",
     "start_url": "/",
     "display": "standalone",
-    "background_color": "#fff",
-    "description": "SkyMap Weather is a simple and intuitive weather app for your everyday use. It is designed to be as simple as possible. With just one click you can check the weather for today, the weather for tomorrow and the forecast for the next 10 days."
+    "background_color": "#ffffff",
+    "theme_color": "#ffffff",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
 }

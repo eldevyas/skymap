@@ -23,12 +23,12 @@ export const metadata: Metadata = {
         siteName: 'SkyMap',
         images: [
             {
-                url: 'https://skymap.vercel.app/og-image.png',
+                url: 'https://skymap.vercel.app/images/og-image.png',
                 width: 1280,
                 height: 1280,
             },
             {
-                url: 'https://skymap.vercel.app/hero.jpg',
+                url: 'https://skymap.vercel.app/images/hero.jpg',
                 width: 3000,
                 height: 2000,
                 alt: 'Og Image Alt',
