@@ -11,6 +11,7 @@ export type CityType = {
     countryCode: string,
     latitude: number,
     longitude: number,
+    timeZone: string,
 }
 
 export type LocationType = {
@@ -64,6 +65,7 @@ const AppContext = createContext<GlobalContextType>({
             countryCode: 'GB',
             latitude: 51.507351,
             longitude: -0.127758,
+            timeZone: 'Europe/London',
         },
         weatherData: null,
         queryCities: [],
@@ -110,6 +112,7 @@ export const AppContextProvider = ({ children }: {
             countryCode: 'GB',
             latitude: 51.507351,
             longitude: -0.127758,
+            timeZone: 'Europe/London',
         });
 
     // Weather Data - The Weather Data for the selected City.
@@ -226,6 +229,7 @@ export const AppContextProvider = ({ children }: {
                     countryCode: 'GB',
                     latitude: 51.507351,
                     longitude: -0.127758,
+                    timeZone: 'Europe/London',
                 };
             }
 
@@ -253,6 +257,7 @@ export const AppContextProvider = ({ children }: {
                 countryCode: 'GB',
                 latitude: 51.507351,
                 longitude: -0.127758,
+                timeZone: 'Europe/London',
             };
         }
 

@@ -35,7 +35,7 @@ export default function SearchCity() {
                             </div>
                             <Combobox.Input
                                 type="text"
-                                className="block w-full rounded-3xl border border-slate-300 outline-none bg-slate-50 px-5 py-2.5 pl-14 text-sm text-slate-900 focus:border-amber-500 focus:ring-amber-500  dark:border-slate-600 dark:bg-slate-900 dark:text-white dark:placeholder-slate-400 dark:focus:border-amber-500 dark:focus:ring-amber-500"
+                                className="block w-full rounded-3xl border border-gray-300 outline-none bg-gray-50 px-5 py-2.5 pl-14 text-sm text-gray-900 focus:border-red-500 focus:ring-red-500  dark:border-gray-600 dark:bg-gray-900 dark:text-white dark:placeholder-gray-400 dark:focus:border-red-500 dark:focus:ring-red-500"
                                 placeholder="Search City..."
                                 required
                                 value={values.query}
@@ -48,13 +48,13 @@ export default function SearchCity() {
                                 }}
                                 onChange={handlers.handleSearch}
                             />
-                            <kbd className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 transform rounded-3xl border border-slate-200 bg-slate-100/50 px-2 py-1 text-xs font-semibold text-slate-800 dark:border-slate-800 dark:bg-slate-950/50 dark:text-slate-300">
+                            <kbd className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 transform rounded-3xl border border-gray-200 bg-gray-100/50 px-2 py-1 text-xs font-semibold text-gray-800 dark:border-gray-800 dark:bg-gray-950/50 dark:text-gray-300">
                                 ⌘ K
                             </kbd>
                         </div>
                         <Combobox.Button
                             type='button'
-                            className="ml-2 rounded-3xl border border-amber-700 bg-amber-700 p-2.5 text-sm font-medium text-white hover:bg-amber-800 focus:outline-none dark:bg-amber-600 dark:hover:bg-amber-700"
+                            className="ml-2 rounded-3xl border border-red-700 bg-red-600 p-2.5 text-sm font-medium text-white hover:bg-red-700 focus:outline-none dark:bg-red-600 dark:hover:bg-red-700"
                         >
                             <SearchNormal
                                 className="h-5 w-5"
@@ -71,11 +71,11 @@ export default function SearchCity() {
                         leaveTo="opacity-0"
                         afterLeave={() => functions.setQuery('')}
                     >
-                        <Combobox.Options className="absolute mt-1 max-h-60 top-full w-full overflow-auto text-base sm:text-sm z-50 p-2 gap-1 origin-top-right bg-slate-50 rounded-xl shadow-2xl
-        focus:outline-none dark:bg-slate-900 dark:divide-gray-700 flex flex-col
-        sm:right-auto sm:left-0 border border-slate-300 dark:border-slate-600">
+                        <Combobox.Options className="absolute mt-1 max-h-60 top-full w-full overflow-auto text-base sm:text-sm z-50 p-2 gap-1 origin-top-right bg-gray-50 rounded-xl shadow-2xl
+        focus:outline-none dark:bg-gray-900 dark:divide-gray-700 flex flex-col
+        sm:right-auto sm:left-0 border border-gray-300 dark:border-gray-600">
                             {values.queryCities.length === 0 && values.query !== '' ? (
-                                <div className="relative cursor-default select-none py-2 px-4 text-slate-700 dark:text-slate-200">
+                                <div className="relative cursor-default select-none py-2 px-4 text-gray-700 dark:text-gray-200">
                                     No results found.
                                 </div>
                             ) : (
@@ -83,7 +83,7 @@ export default function SearchCity() {
                                     <Combobox.Option
                                         key={city.id}
                                         className={({ active }) =>
-                                            `relative inline-flex justify-start items-center gap-2 rounded-lg px-3.5 py-2.5 text-sm font-semibold hover:bg-amber-600 dark:hover:bg-amber-600 hover:text-white ${active ? 'bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-50' : 'dark:bg-none dark:text-slate-200 dark:hover:text-white dark:hover:bg-amber-600'}`
+                                            `relative inline-flex justify-start items-center gap-2 rounded-lg px-3.5 py-2.5 text-sm font-semibold hover:bg-red-600 dark:hover:bg-red-600 hover:text-white ${active ? 'bg-gray-200 text-gray-600 dark:bg-gray-800 dark:text-gray-50' : 'dark:bg-none dark:text-gray-200 dark:hover:text-white dark:hover:bg-red-600'}`
                                         }
                                         value={city}
                                     >
@@ -123,7 +123,7 @@ const CityOption = ({ city, selected, active }: { city: CityType; selected: bool
             )}
             <span className='flex flex-row items-baseline justify-start gap-2 h-full'>
                 <span className={`block truncate ${selected ? 'font-medium' : 'font-normal'}`}>{city.mainText}</span>
-                <span className="block truncate text-slate-500 dark:text-slate-400 font-normal text-xs">{city.secondaryText}</span>
+                <span className="block truncate text-gray-500 dark:text-gray-400 font-normal text-xs">{city.secondaryText}</span>
             </span>
         </>
     );

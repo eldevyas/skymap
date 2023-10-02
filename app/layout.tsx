@@ -13,19 +13,7 @@ const FontFamily = Merriweather_Sans({ subsets: ['latin'] })
 export const metadata: Metadata = {
     title: 'SkyMap - Weather Forecast',
     description: 'Weather forecast for the next 24 hours.',
-    openGraph: {
-        type: 'website',
-        locale: 'en_IE',
-        url: 'https://sky-map.vercel.app',
-        images: [
-            {
-                url: 'https://sky-map.vercel.app/og.png',
-                alt: 'SkyMap - Weather Forecast',
-                width: 1200,
-                height: 630
-            }
-        ]
-    },
+    keywords: 'weather, forecast, rain, snow, sun, cloud, wind, humidity, pressure, temperature, sky, map, skymap, sky map',
 }
 
 export default function RootLayout({ children }: {

@@ -19,10 +19,10 @@ export default function Provider({ children }: {
         <AppContextProvider>
             <ThemeProvider attribute="class">
                 <div
-                    className="bg-slate-100 dark:bg-slate-950 h-full min-h-screen w-full flex flex-col justify-start items-start z-10 background"
+                    className="bg-gray-100 dark:bg-gray-950 h-full min-h-screen w-full flex flex-col justify-start items-start z-10 background"
                 >
                     <NextTopLoader
-                        color={Colors.amber[500]}
+                        color={Colors.red[500]}
                         initialPosition={0.08}
                         crawlSpeed={200}
                         height={5}
@@ -30,7 +30,7 @@ export default function Provider({ children }: {
                         showSpinner={false}
                         easing="ease"
                         speed={200}
-                        shadow={`0 0 10px ${Colors.blue["500"]},0 0 5px ${Colors.amber["500"]}`}
+                        shadow={`0 0 10px ${Colors.red["500"]},0 0 5px ${Colors.red["500"]}`}
                     />
                     <Toaster
                         position="top-center"
@@ -74,7 +74,7 @@ export default function Provider({ children }: {
                                 {({ icon, message }) => (
                                     <div
                                         id="toast-default"
-                                        className="flex max-w-sm shadow-2xl filter-none items-center justify-center space-x-2 rounded-3xl p-3 border border-slate-300 outline-none dark:border-slate-600 dark:bg-slate-900"
+                                        className="flex max-w-sm shadow-2xl bg-gray-50 items-center justify-center space-x-2 rounded-3xl p-3 border border-gray-300 outline-none dark:border-gray-600 dark:bg-gray-900"
                                         role="alert"
                                     >
                                         <div className="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-xl">
@@ -83,13 +83,13 @@ export default function Provider({ children }: {
                                                 Toast Icon
                                             </span>
                                         </div>
-                                        <div className="ml-3 text-sm font-normal text-slate-500 dark:text-slate-400">
+                                        <div className="ml-3 text-sm font-normal text-gray-500 dark:text-gray-400">
                                             {message}
                                         </div>
                                         {t.type !== "loading" && (
                                             <button
                                                 type="button"
-                                                className="-mx-1.5 -my-1.5 ml-auto inline-flex h-8 w-8 rounded-xl slate p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-900 dark:bg-slate-800 dark:text-slate-500 dark:hover:bg-slate-900 dark:hover:text-white"
+                                                className="-mx-1.5 -my-1.5 ml-auto inline-flex h-8 w-8 rounded-xl gray p-1.5 text-gray-400 hover:bg-gray-100 hover:text-gray-900 dark:bg-gray-800 dark:text-gray-500 dark:hover:bg-gray-900 dark:hover:text-white"
                                                 data-dismiss-target="#toast-default"
                                                 aria-label="Close"
                                                 onClick={() => toast.dismiss(t.id)}
@@ -98,7 +98,7 @@ export default function Provider({ children }: {
                                                     Close
                                                 </span>
                                                 <CloseSquare
-                                                    className="h-5 w-5 text-slate-400 dark:text-slate-300"
+                                                    className="h-5 w-5 text-gray-400 dark:text-gray-300"
                                                     color="currentColor"
                                                     variant="Bulk"
                                                     aria-hidden="true"

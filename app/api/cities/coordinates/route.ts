@@ -3,6 +3,7 @@
 import { CityType } from "@/app/context";
 import axios from "axios";
 import Fuse from "fuse.js";
+import { find } from "geo-tz";
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url)
@@ -54,6 +55,9 @@ export async function GET(request: Request) {
                 // Get the city's country from the address_components
                 const cityCountry = await countryCodeToName(countryCode);
 
+                // Find the timezone of the city
+                const timeZone = find(lat, lng)[0];
+
                 return {
                     id: prediction.place_id,
                     mainText: prediction.name,
@@ -61,6 +65,7 @@ export async function GET(request: Request) {
                     countryCode: countryCode,
                     latitude: lat,
                     longitude: lng,
+                    timeZone: timeZone,
                 };
             }
 
