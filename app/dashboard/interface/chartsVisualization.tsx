@@ -1,3 +1,5 @@
+"use client";
+
 import AppContext from "@/app/context";
 import React, { useContext } from "react";
 import Chart from "react-apexcharts";
