@@ -63,7 +63,6 @@ export default function Dashboard() {
                     </ol>
                 </nav>
             </div>
-
             <MainDashboard />
         </div>
     );
