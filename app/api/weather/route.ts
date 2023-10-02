@@ -22,21 +22,16 @@ export async function GET(request: Request) {
         });
     }
 
-    const currentWeatherData = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}&units=metric`)
+    const currentWeatherData: [] = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}&units=metric`)
         .then((response) => response.data)
         .catch((error) => {
             console.error(error);
             return [];
         });
 
-    const hourlyForecastData = await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}&units=metric`)
-        .then((response) => response.data)
-        .catch((error) => {
-            console.error(error);
-            return [];
-        });
+    const hourlyForecastData: [] = [];
 
-    const dailyForecastData = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}&units=metric`)
+    const dailyForecastData: [] = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}&units=metric`)
         .then((response) => response.data)
         .catch((error) => {
             console.error(error);

@@ -26,7 +26,7 @@ export default function NavBar() {
         <nav className="w-full mx-auto max-w-7xl relative bg-gray-50 dark:bg-gray-900 px-6 py-4 rounded-3xl sm:px-16 lg:flex lg:gap-x-20 lg:px-24 flex flex-row flex-wrap md:flex-row items-center justify-between p-10 border border-gray-300 outline-none dark:border-gray-600">
             <Link href="/" className="flex items-center">
                 <Image
-                    src="/logo.svg"
+                    src="/svg/logo.svg"
                     width={50}
                     height={50}
                     className="mr-3"
@@ -71,7 +71,6 @@ function ThemeDropdown() {
 
     useEffect(
         () => {
-            console.log(`Theme: ${theme}`)
             if (theme === "light") {
                 setThemeState("light");
             } else if (theme === "dark") {

@@ -17,7 +17,7 @@ const ICON = ({ isLoading }: { isLoading: boolean }) => {
             onClick={() => Router.push("/")}
         >
             <Image
-                src="/logo.svg"
+                src="/svg/logo.svg"
                 className="h-2/3 w-2/3 object-contain"
                 alt="Logo"
                 width={50}

@@ -1,0 +1,8 @@
+{
+    "name": "SkyMap Weather",
+    "short_name": "SkyMap",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "SkyMap Weather is a simple and intuitive weather app for your everyday use. It is designed to be as simple as possible. With just one click you can check the weather for today, the weather for tomorrow and the forecast for the next 10 days."
+}

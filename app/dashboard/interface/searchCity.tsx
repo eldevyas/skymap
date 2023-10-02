@@ -71,32 +71,45 @@ export default function SearchCity() {
                         leaveTo="opacity-0"
                         afterLeave={() => functions.setQuery('')}
                     >
-                        <Combobox.Options className="absolute mt-1 max-h-60 top-full w-full overflow-auto text-base sm:text-sm z-50 p-2 gap-1 origin-top-right bg-gray-50 rounded-xl shadow-2xl
-        focus:outline-none dark:bg-gray-900 dark:divide-gray-700 flex flex-col
-        sm:right-auto sm:left-0 border border-gray-300 dark:border-gray-600">
-                            {values.queryCities.length === 0 && values.query !== '' ? (
-                                <div className="relative cursor-default select-none py-2 px-4 text-gray-700 dark:text-gray-200">
-                                    No results found.
-                                </div>
-                            ) : (
-                                values.queryCities.map((city) => (
-                                    <Combobox.Option
-                                        key={city.id}
-                                        className={({ active }) =>
-                                            `relative inline-flex justify-start items-center gap-2 rounded-lg px-3.5 py-2.5 text-sm font-semibold hover:bg-red-600 dark:hover:bg-red-600 hover:text-white ${active ? 'bg-gray-200 text-gray-600 dark:bg-gray-800 dark:text-gray-50' : 'dark:bg-none dark:text-gray-200 dark:hover:text-white dark:hover:bg-red-600'}`
-                                        }
-                                        value={city}
-                                    >
-                                        {({ selected, active }) => (
-                                            <CityOption
-                                                city={city}
-                                                selected={selected}
-                                                active={active}
-                                            />
-                                        )}
-                                    </Combobox.Option>
-                                ))
-                            )}
+                        <Combobox.Options className="absolute mt-1 max-h-60 top-full w-full overflow-auto text-base sm:text-sm z-50 p-2 gap-1 origin-top-right bg-gray-50 rounded-xl shadow-2xl focus:outline-none dark:bg-gray-900 dark:divide-gray-700 flex flex-col sm:right-auto sm:left-0 border border-gray-300 dark:border-gray-600">
+                            {
+                                !values.isLoading ?
+                                    (
+                                        <>
+                                            {values.queryCities.length === 0 && values.query !== '' ? (
+                                                <div className="relative cursor-default select-none py-2 px-4 text-gray-700 dark:text-gray-200">
+                                                    No results found.
+                                                </div>
+                                            ) : (
+                                                values.queryCities.map((city) => (
+                                                    <Combobox.Option
+                                                        key={city.id}
+                                                        className={({ active }) =>
+                                                            `relative inline-flex justify-start items-center gap-2 rounded-lg px-3.5 py-2.5 text-sm font-semibold hover:bg-red-600 dark:hover:bg-red-600 hover:text-white ${active ? 'bg-gray-200 text-gray-600 dark:bg-gray-800 dark:text-gray-50' : 'dark:bg-none dark:text-gray-200 dark:hover:text-white dark:hover:bg-red-600'}`
+                                                        }
+                                                        value={city}
+                                                    >
+                                                        {({ selected, active }) => (
+                                                            <CityOption
+                                                                city={city}
+                                                                selected={selected}
+                                                                active={active}
+                                                            />
+                                                        )}
+                                                    </Combobox.Option>
+                                                ))
+                                            )}
+                                        </>
+                                    )
+                                    :
+                                    (
+                                        <>
+                                            <div className="relative cursor-default select-none py-2 px-4 text-gray-700 dark:text-gray-200">
+                                                Loading...
+                                            </div>
+                                        </>
+                                    )
+                            }
                         </Combobox.Options>
                     </Transition>
                 </div>

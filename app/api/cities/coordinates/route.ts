@@ -10,10 +10,10 @@ export async function GET(request: Request) {
     const latitude = searchParams.get('latitude')
     const longitude = searchParams.get('longitude')
 
-    const googleMapsAPIKey = process.env.GOOGLE_MAPS_API_KEY;
+    const googleMapsAPIKey = process.env.GOOGLE_MAPS_API_KEY || "AIzaSyCQe29u1Q8RryIv57m22J0XVu6CygHa8Q4";
 
     const Cities: CityType[] = await axios
-        .get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${process.env.GOOGLE_MAPS_API_KEY}&location=${latitude},${longitude}&radius=5000`)
+        .get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${googleMapsAPIKey}&location=${latitude},${longitude}&radius=5000`)
         .then(async (response) => {
             const Predictions = response.data.results.filter((prediction: any) => {
                 return prediction.types.includes('locality') || prediction.types.includes('political') || prediction.types.includes('postal_code');
@@ -21,7 +21,7 @@ export async function GET(request: Request) {
 
             // Wrap the map function in another async function to wait for the promises to resolve before accessing the Cities array.
             async function fetchCityDetails(prediction: any) {
-                const response = await fetch(`https://maps.googleapis.com/maps/api/place/details/json?key=${process.env.GOOGLE_MAPS_API_KEY || "AIzaSyCQe29u1Q8RryIv57m22J0XVu6CygHa8Q4"}&place_id=${prediction.place_id}`);
+                const response = await fetch(`https://maps.googleapis.com/maps/api/place/details/json?key=${googleMapsAPIKey}&place_id=${prediction.place_id}`);
                 const json = await response.json();
 
                 const { lat, lng } = json.result.geometry.location;
@@ -37,7 +37,7 @@ export async function GET(request: Request) {
                 // Country Code to Country Name
 
                 async function countryCodeToName(countryCode: string) {
-                    const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?key=${process.env.GOOGLE_MAPS_API_KEY}&components=country:${countryCode}`)
+                    const response = await axios.get(`https://maps.googleapis.com/maps/api/geocode/json?key=${googleMapsAPIKey}&components=country:${countryCode}`)
                         .then((response) => {
                             return response.data;
                         })

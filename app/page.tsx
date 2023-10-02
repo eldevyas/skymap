@@ -56,7 +56,7 @@ export default function Home() {
                 <div className="relative flex-1 h-96 min-w-[16rem]">
                     <Image
                         className="relative w-full rounded-xl bg-white/5 ring-1 ring-white/10 h-96"
-                        src="/hero.jpg"
+                        src="/images/hero.jpg"
                         alt="App Screenshot"
                         fill
                         objectFit='cover'

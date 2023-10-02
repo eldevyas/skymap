@@ -197,7 +197,6 @@ export const AppContextProvider = ({ children }: {
                 })
                 .catch((error) => {
                     console.log(error);
-                    toast.error(`Couldn't find your location with GPS.`);
                     return null;
                 });
 
@@ -212,7 +211,6 @@ export const AppContextProvider = ({ children }: {
                     })
                     .catch((error) => {
                         console.log(error);
-                        toast.error(`Couldn't find your location with IP Address.`);
                         return null;
                     });
             }
@@ -239,9 +237,9 @@ export const AppContextProvider = ({ children }: {
 
         // Show a loading toast
         await toast.promise(customPromiseForToast, {
-            loading: `Getting your location...`,
-            success: `Found your location!`,
-            error: `Couldn't find your location.`,
+            loading: `Analysing your city's geolocation...`,
+            success: `Showing weather for your city.`,
+            error: `Couldn't find your city.`,
         }).then((foundLocation) => {
             userCityLocation = foundLocation;
         }).catch((error) => {
@@ -281,12 +279,6 @@ export const AppContextProvider = ({ children }: {
         // Set Loading to true
         setLoading(true);
 
-        toast.loading(`Getting weather data for ${city.mainText}...`,
-            {
-                id: `weatherDataLoadingToast`,
-            }
-        );
-
         // Fetch Weather Data from the API service.
         const weatherData = await axios.get(
             `/api/weather?lat=${city.latitude}&lon=${city.longitude}`
@@ -303,8 +295,6 @@ export const AppContextProvider = ({ children }: {
 
         // Set Loading to false
         setLoading(false);
-
-        toast.dismiss(`weatherDataLoadingToast`);
 
         // Set Weather Data (if it exists)
         if (weatherData) {
