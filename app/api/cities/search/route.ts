@@ -22,7 +22,7 @@ export async function GET(request: Request) {
         .get(`https://maps.googleapis.com/maps/api/place/autocomplete/json?key=${googleMapsAPIKey}&input=${searchQuery}`)
         .then(async (response) => {
             const Predictions = response.data.predictions.filter((prediction: any) => {
-                return prediction.types.includes('locality');
+                return prediction.types.includes('locality') || prediction.types.includes('administrative_area_level_1') || prediction.types.includes('country');
             });
 
             console.log(`Found ${Predictions.length} predictions from Google Maps API.`)
