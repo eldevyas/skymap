@@ -1,6 +1,6 @@
 # SkyMap Weather Dashboard
 
-![SkyMap Logo](https://sky-map.vercel.app/favicon.png)
+<img src="https://sky-map.vercel.app/svg/logo.svg" alt="drawing" width="100"/>
 
 SkyMap is a Weather Dashboard that provides real-time weather updates and interactive charts with a single click. No sign-in is required.
 
