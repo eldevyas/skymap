@@ -77,9 +77,8 @@ export default function LoginPage() {
                     autoComplete="off"
                     onSubmit={(e) => {
                         e.preventDefault();
-                        console.log(e.target);
                         toast.success(
-                            "Hang tight ! You can still use the alpha for now.",
+                            "Hang tight! You can still use the app without authentication for now.",
                             {
                                 icon: "🤫",
                                 duration: 5000,

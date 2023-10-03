@@ -23,7 +23,7 @@ import { Menu, Transition } from '@headlessui/react';
 
 export default function NavBar() {
     return (
-        <nav className="w-full mx-auto max-w-7xl relative bg-gray-50 dark:bg-gray-900 px-6 py-4 rounded-3xl sm:px-16 lg:flex lg:gap-x-20 lg:px-24 flex flex-row flex-wrap md:flex-row items-center justify-between p-10 border border-gray-300 outline-none dark:border-gray-600">
+        <nav className="w-full mx-auto max-w-7xl relative bg-gray-50 dark:bg-gray-900 px-6 py-4 rounded-3xl sm:px-16 lg:flex lg:gap-x-20 lg:px-24 flex flex-row flex-wrap md:flex-row items-center justify-between p-10 border border-gray-300 outline-none dark:border-gray-600 z-50">
             <Link href="/" className="flex items-center">
                 <Image
                     src="/svg/logo.svg"
