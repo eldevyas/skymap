@@ -8,6 +8,7 @@ import Colors from "tailwindcss/colors"
 import NavBar from './components/navBar';
 import Footer from './components/footer';
 import React from 'react';
+import { Element } from 'iconsax-react';
 
 export default function Home() {
     return (
@@ -56,9 +57,10 @@ export default function Home() {
                                 type="button"
                                 className="inline-flex shadow-2xl w-full sm:w-auto text-center justify-center items-center gap-2 rounded-xl bg-gray-50 px-3.5 py-2.5 text-sm font-semibold text-gray-800 hover:bg-gray-100"
                             >
-                                <PresentationChartBarIcon
-                                    className="h-6 w-6 dark:text-gray-600"
-                                    aria-hidden="true"
+                                <Element
+                                    className="h-6 w-6 text-gray-600"
+                                    variant='Bulk'
+                                    color='currentColor'
                                 />
                                 <span className="text-sm font-semibold">
                                     Get Started
