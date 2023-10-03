@@ -3,6 +3,81 @@ import React, { createContext, useEffect } from 'react';
 import toast from 'react-hot-toast';
 import Fuse from 'fuse.js';
 import { getUserLocationWithCoordinates, getUserLocationWithIP } from './functions/getUserLocation';
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+
+const placeholderCurrentWeatherType: currentWeatherType = {
+    coord: {
+        lon: 0,
+        lat: 0,
+    },
+    weather: [
+        {
+            id: 0,
+            main: "Unknown",
+            description: "Unknown",
+            icon: "unknown",
+        },
+    ],
+    base: "",
+    main: {
+        temp: 0,
+        feels_like: 0,
+        temp_min: 0,
+        temp_max: 0,
+        pressure: 0,
+        humidity: 0,
+        sea_level: 0,
+        grnd_level: 0,
+    },
+    visibility: 0,
+    wind: {
+        speed: 0,
+        deg: 0,
+        gust: 0,
+    },
+    rain: {
+        "1h": 0,
+    },
+    clouds: {
+        all: 0,
+    },
+    dt: 0,
+    sys: {
+        type: 0,
+        id: 0,
+        country: "",
+        sunrise: 0,
+        sunset: 0,
+    },
+    timezone: 0,
+    id: 0,
+    name: "",
+    cod: 0,
+};
+
+const placeholderHourlyForecastType: hourlyForecastType = {
+    "latitude": 0,
+    "longitude": 0,
+    "generationtime_ms": 0,
+    "utc_offset_seconds": 0,
+    "timezone": "",
+    "timezone_abbreviation": "",
+    "elevation": 0,
+    "hourly_units": {
+        "time": "",
+        "temperature_2m": "",
+        "dewpoint_2m": "",
+        "apparent_temperature": "",
+        "relativehumidity_2m": "",
+    },
+    "hourly": {
+        "time": [],
+        "temperature_2m": [],
+        "dewpoint_2m": [],
+        "apparent_temperature": [],
+        "relativehumidity_2m": [],
+    },
+};
 
 export type CityType = {
     id: number | string,
@@ -29,9 +104,9 @@ export type GlobalContextType = {
         selectedCity: CityType,
         weatherData: {
             current: currentWeatherType,
-            hourlyForecast: any,
+            hourlyForecast: hourlyForecastType,
             dailyForecast: any,
-        } | null,
+        },
         queryCities: CityType[],
     },
     functions: {
@@ -67,7 +142,11 @@ const AppContext = createContext<GlobalContextType>({
             longitude: -0.127758,
             timeZone: 'Europe/London',
         },
-        weatherData: null,
+        weatherData: {
+            current: placeholderCurrentWeatherType,
+            hourlyForecast: placeholderHourlyForecastType,
+            dailyForecast: null,
+        },
         queryCities: [],
     },
     functions: {
@@ -117,15 +196,34 @@ export const AppContextProvider = ({ children }: {
 
     // Weather Data - The Weather Data for the selected City.
     const [weatherData,
-        setWeatherData] = React.useState(null);
+        setWeatherData] = React.useState<
+            {
+                current: currentWeatherType,
+                hourlyForecast: hourlyForecastType,
+                dailyForecast: any,
+            }
+        >(
+            {
+                current: placeholderCurrentWeatherType,
+                hourlyForecast: placeholderHourlyForecastType,
+                dailyForecast: null,
+            }
+        );
 
     // queryCities - The Cities that match the user's search query.
     const [queryCities,
         setQueryCities] = React.useState<CityType[]>([]);
 
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
     useEffect(() => {
-        getUserLocation();
-    }, [])
+        // Fetch the user location only if it's a dashboard page.
+        if (pathname.includes('dashboard')) {
+            getUserLocation();
+        }
+    }, [pathname])
 
     // useEffect for when the selectedCity changes.
     useEffect(() => {
@@ -391,3 +489,28 @@ interface currentWeatherType {
     name: string;
     cod: number;
 }
+
+interface hourlyForecastType {
+    "latitude": number,
+    "longitude": number,
+    "generationtime_ms": number,
+    "utc_offset_seconds": number,
+    "timezone": string,
+    "timezone_abbreviation": string,
+    "elevation": number,
+    "hourly_units": {
+        "time": string,
+        "temperature_2m": string,
+        "dewpoint_2m": string,
+        "apparent_temperature": string,
+        "relativehumidity_2m": string,
+    },
+    "hourly": {
+        "time": string[],
+        "temperature_2m": number[],
+        "dewpoint_2m": number[],
+        "apparent_temperature": number[],
+        "relativehumidity_2m": number[],
+    }
+}
+

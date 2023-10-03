@@ -15,7 +15,46 @@ export const metadata: Metadata = {
     metadataBase: new URL('https://skymap.vercel.app/'),
     title: 'SkyMap - Weather Forecast',
     description: 'SkyMap is a weather forecast app that shows you the weather of any city in the world.',
-    keywords: 'weather, forecast, rain, snow, sun, cloud, wind, humidity, pressure, temperature, sky, map, skymap, sky map',
+    generator: 'Vercel',
+    applicationName: 'SkyMap - Weather Forecast',
+    referrer: 'origin-when-cross-origin',
+    keywords: [
+        'Weather',
+        'Forecast',
+        'SkyMap',
+        'Weather Forecast',
+        'Weather Forecast App',
+        'Weather App',
+        'Weather App Forecast',
+    ],
+    authors: [{
+        name: 'Yassine Chettouch', url: "https://www.github.com/eldevyas"
+    }],
+    creator: 'Yassine Chettouch',
+    publisher: 'Yassine Chettouch',
+    formatDetection: {
+        email: false,
+        address: false,
+        telephone: false,
+    },
+    icons: {
+        icon: '/svg/logo.svg',
+        shortcut: '/apple-touch-icon.png',
+        apple: '/apple-touch-icon.png',
+        other: {
+            rel: 'apple-touch-icon-precomposed',
+            url: '/aapple-touch-iconapple-touch-icon.png',
+        },
+    },
+    twitter: {
+        card: 'summary_large_image',
+        title: 'SkyMap - Weather Forecast',
+        description: 'SkyMap is a weather forecast app that shows you the weather of any city in the world.',
+        siteId: '1467726470533754880',
+        creator: '@eldevyas',
+        creatorId: '1467726470533754880',
+        images: ['https://skymap.vercel.app/images/og-image.png'],
+    },
     openGraph: {
         title: 'SkyMap - Weather Forecast',
         description: 'SkyMap is a weather forecast app that shows you the weather of any city in the world.',

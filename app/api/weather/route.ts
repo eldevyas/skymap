@@ -22,21 +22,24 @@ export async function GET(request: Request) {
         });
     }
 
+    // For Accurate Weather Data - Only for the Current Day, we use Open Weather API.
     const currentWeatherData: [] = await axios.get(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}&units=metric`)
         .then((response) => response.data)
         .catch((error) => {
-            console.error(error);
+            console.error("Error in Open Weather API", error);
             return [];
         });
 
-    const hourlyForecastData: [] = [];
 
-    const dailyForecastData: [] = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${openWeatherApiKey}&units=metric`)
+    // For Less Accurate Weather Data - For the next 5 days, we use Open Meteo API.
+    const hourlyForecastData: [] = await axios.get(`https://api.open-meteo.com/v1/ecmwf?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,dewpoint_2m,apparent_temperature,relativehumidity_2m`)
         .then((response) => response.data)
         .catch((error) => {
-            console.error(error);
+            console.error("Error in Open Meteo API", error);
             return [];
         });
+
+    const dailyForecastData: [] = []
 
     return new Response(JSON.stringify({
         current: currentWeatherData,

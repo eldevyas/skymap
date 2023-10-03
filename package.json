@@ -24,6 +24,8 @@
     "country-flag-icons": "^1.5.7",
     "eslint": "8.50.0",
     "eslint-config-next": "13.5.2",
+    "flowbite": "^1.8.1",
+    "flowbite-react": "^0.6.3",
     "fuse.js": "^6.6.2",
     "geo-tz": "^7.0.7",
     "google": "^2.1.0",

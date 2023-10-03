@@ -13,7 +13,7 @@ export default function MainDashboard() {
             >
                 <SearchCity />
                 <WeatherOverview />
-                {/* <ChartsVisualization /> */}
+                <ChartsVisualization />
             </div>
         </>
     )

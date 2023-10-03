@@ -158,19 +158,17 @@ export default function WeatherOverview() {
                 }
                 {
                     values.isLoading ? (
-                        <div className="relative animate-pulse bg-gray-50 dark:bg-gray-900 border border-dashed rounded-3xl  border-gray-300 dark:border-gray-600 h-full overflow-hidden min-h-[200px]">
+                        <div className="relative animate-pulse bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-3xl h-full overflow-hidden min-h-[200px]">
                             <div className='absolute inset-0 flex justify-center items-center'>
                                 <div className='w-16 h-16 flex justify-center items-center rounded-xl bg-gray-100 dark:bg-gray-800 overflow-hidden text-gray-200 dark:text-gray-600'>
-                                    <Map
-                                        className='h-10 w-10'
-                                        color='currentColor'
-                                        variant='TwoTone'
+                                    <div
+                                        className='h-10 w-10 bg-gray-200 rounded-full dark:bg-gray-700'
                                     />
                                 </div>
                             </div>
                         </div>
                     ) : (
-                        <div className="relative bg-gray-50 dark:bg-gray-900 border border-dashed rounded-3xl  border-gray-300 dark:border-gray-600 h-full overflow-hidden min-h-[200px]">
+                        <div className="relative bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-600 rounded-3xl h-full overflow-hidden min-h-[200px]">
                             <iframe
                                 name={
                                     `Map of ${values.selectedCity?.mainText + ", " + values.selectedCity?.secondaryText}.`
