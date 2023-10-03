@@ -10,7 +10,7 @@ export async function GET(request: Request) {
     const latitude = searchParams.get('latitude')
     const longitude = searchParams.get('longitude')
 
-    const googleMapsAPIKey = process.env.GOOGLE_MAPS_API_KEY || "AIzaSyCQe29u1Q8RryIv57m22J0XVu6CygHa8Q4";
+    const googleMapsAPIKey = process.env.GOOGLE_MAPS_API_KEY;
 
     const Cities: CityType[] = await axios
         .get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${googleMapsAPIKey}&location=${latitude},${longitude}&radius=5000`)
