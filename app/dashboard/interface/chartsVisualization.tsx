@@ -4,10 +4,10 @@ import AppContext from "@/app/context";
 import { ApexOptions } from "apexcharts";
 import { useTheme } from "next-themes";
 import React, { useContext } from "react";
-import ReactApexChart from "react-apexcharts";
-import Chart from "react-apexcharts";
 import Colors from "tailwindcss/colors";
+import dynamic from 'next/dynamic'
 
+const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 export default function ChartsVisualization() {
     return (
         <React.Fragment>
