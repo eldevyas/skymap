@@ -76,7 +76,7 @@ export default function SearchCity() {
                                 !values.isLoading ?
                                     (
                                         <>
-                                            {values.queryCities.length === 0 && values.query !== '' ? (
+                                            {values.queryCities.length === 0 ? (
                                                 <div className="relative cursor-default select-none py-2 px-4 text-gray-700 dark:text-gray-200">
                                                     No results found.
                                                 </div>
