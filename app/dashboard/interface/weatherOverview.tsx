@@ -91,10 +91,8 @@ export default function WeatherOverview() {
                                         <h1
                                             className='text-lg font-bold tracking-tight text-gray-800 dark:text-gray-50 sm:text-xl'
                                         >
-                                            {
-                                                values.selectedCity ? `${values.selectedCity?.mainText}, ${values.selectedCity?.secondaryText}.`
-                                                    : `No City is Selected. Please Search for a City.`
-                                            }
+                                            {/* If the mainText and Secondary Text are both existant, we show them both, otherwise we only show the existant one. */}
+                                            {values.selectedCity?.mainText && values.selectedCity?.secondaryText ? values.selectedCity?.mainText + ", " + values.selectedCity?.secondaryText : values.selectedCity?.mainText || values.selectedCity?.secondaryText}.
                                         </h1>
                                     </div>
                                     <p
