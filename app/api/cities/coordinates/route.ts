@@ -16,7 +16,7 @@ export async function GET(request: Request) {
         .get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?key=${googleMapsAPIKey}&location=${latitude},${longitude}&radius=5000`)
         .then(async (response) => {
             const Predictions = response.data.results.filter((prediction: any) => {
-                return prediction.types.includes('locality') || prediction.types.includes('political') || prediction.types.includes('postal_code');
+                return prediction.types.includes('locality') || prediction.types.includes('administrative_area_level_1') || prediction.types.includes('country');
             });
 
             // Wrap the map function in another async function to wait for the promises to resolve before accessing the Cities array.
