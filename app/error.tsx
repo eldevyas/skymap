@@ -34,17 +34,17 @@ export default function Error({
         <main className="grid min-h-full place-items-center w-full px-6 py-24 sm:py-32 lg:px-8">
             <div className="text-center max-w-xs md:max-w-xl">
                 <p className="text-base font-semibold text-red-600">500</p>
-                <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-5xl">
+                <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-100 sm:text-5xl">
                     Something went wrong!
                 </h1>
-                {/* <hr className="w-48 h-1 mx-auto my-2 bg-gray-500 border-0 rounded md:my-10 dark:bg-gray-300/25" /> */}
-                <p className="mt-6 text-base leading-7 text-gray-600 dark:text-gray-300">
+                {/* <hr className="w-48 h-1 mx-auto my-2 bg-slate-500 border-0 rounded md:my-10 dark:bg-slate-300/25" /> */}
+                <p className="mt-6 text-base leading-7 text-slate-600 dark:text-slate-300">
                     Please try again later. If the problem persists, please
                     contact us.
                 </p>
-                <div className="relative mt-6 bg-gray-50 dark:bg-gray-950 rounded-3xl p-4 w-full border overflow-hidden  border-gray-300 dark:border-gray-700">
+                <div className="relative mt-6 bg-slate-50 dark:bg-slate-950 rounded-3xl p-4 w-full border overflow-hidden  border-slate-300 dark:border-slate-700">
                     <code
-                        className="text-sm leading-7 font-mono text-gray-900 dark:text-gray-100 w-full
+                        className="text-sm leading-7 font-mono text-slate-900 dark:text-slate-100 w-full
                     overflow-ellipsis whitespace-prewrap break-words
                     "
                     >

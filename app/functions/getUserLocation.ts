@@ -17,7 +17,15 @@ export async function getUserLocationWithCoordinates(): Promise<CityType> {
 
                     // Get the user's city and country based on their latitude and longitude coordinates
                     try {
-                        const response = await axios.get(`/api/cities/coordinates?latitude=${lat}&longitude=${lng}`);
+                        const response = await fetch(`/api/location?query=${lat},${lng}`)
+                            .then((response) => response.json())
+                            .then((data) => {
+                                return data;
+                            })
+                            .catch((error) => {
+                                return [];
+                            });
+
                         const city = response.data[0];
 
                         // Resolve the city
@@ -47,7 +55,16 @@ export async function getUserLocationWithIP(): Promise<CityType> {
     return new Promise(async (resolve, reject) => {
         // Get the user's city and country based on their latitude and longitude coordinates
         try {
-            const response = await axios.get(`/api/cities/ip-geolocation`);
+            const response = await fetch(`/api/location?query=auto:ip`)
+                .then((response) => response.json())
+                .then((data) => {
+                    console.log("Data from Weather API is: ", data);
+                    return data;
+                })
+                .catch((error) => {
+                    console.error("Error fetching city details from Weather API: ", error)
+                    return [];
+                });
             const city = response.data[0];
 
             // Resolve the city

@@ -8,17 +8,23 @@ import Colors from "tailwindcss/colors"
 import NavBar from './components/navBar';
 import Footer from './components/footer';
 import React from 'react';
-import { Element } from 'iconsax-react';
+import { Dash, Element } from 'iconsax-react';
+import SearchCity from './dashboard/interface/searchCity';
 
 export default function Home() {
     return (
         <React.Fragment>
-            <div className="mx-auto w-full max-w-7xl p-10 h-auto relative overflow-hidden bg-gray-50 dark:bg-gray-900 rounded-3xl lg:flex lg:gap-x-20 border border-gray-300 outline-none dark:border-gray-600 flex flex-row justify-center items-center gap-4 flex-wrap">
+            <div
+                className="mx-auto w-full max-w-7xl h-auto relative"
+            >
+                <SearchCity />
+            </div>
+            <div className="mx-auto w-full max-w-7xl p-10 h-auto relative overflow-hidden bg-slate-50 dark:bg-slate-900 rounded-3xl lg:flex lg:gap-x-20 border border-slate-300 outline-none dark:border-slate-600 flex flex-row justify-center items-center gap-4 flex-wrap">
                 {/* Image Background */}
                 <div
                     className='absolute backdrop-blur-sm inset-0 w-full h-full bg-[url("/images/hero.jpg")] bg-center bg-cover -z-0'
                 >
-                    <div className="absolute inset-0 bg-gradient-radial from-gray-900 to-gray-600 opacity-25 bg-center bg-cover bg-no-repeat mix-blend-darken" aria-hidden="true" />
+                    <div className="absolute inset-0 bg-gradient-radial from-slate-900 to-slate-600 opacity-25 bg-center bg-cover bg-no-repeat mix-blend-darken" aria-hidden="true" />
                 </div>
 
 
@@ -32,19 +38,19 @@ export default function Home() {
                         <radialGradient id="759c1415-0410-454c-8f7c-9a820de03641">
                             <stop stopColor={Colors.white} />
                             <stop offset={1}
-                                stopColor={Colors.gray[300]} />
+                                stopColor={Colors.slate[300]} />
                         </radialGradient>
                     </defs>
                 </svg>
 
                 <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 relative z-30">
                     {/* Middle Overlay to Increase Text Contrast */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 inset-0 w-full h-full bg-gradient-to-b from-gray-900 to-gray-600 opacity-30 mix-blend-darken rounded-full blur-3xl z-0" aria-hidden="true" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 inset-0 w-full h-full bg-gradient-to-b from-slate-900 to-slate-600 opacity-30 mix-blend-darken rounded-full blur-3xl z-0" aria-hidden="true" />
 
-                    <h2 className="relative text-3xl font-bold tracking-tight text-gray-50 sm:text-4xl text-shadow-lg z-30">
+                    <h2 className="relative text-3xl font-bold tracking-tight text-slate-50 sm:text-4xl text-shadow-lg z-30">
                         Stay Ahead with SkyMap.
                     </h2>
-                    <p className="relative mt-6 text-lg leading-8 text-gray-200 text-shadow-lg z-30">
+                    <p className="relative mt-6 text-lg leading-8 text-slate-200 text-shadow-lg z-30">
                         Empower yourself with real-time weather insights. Effortlessly access forecasts, interactive charts, and more.
                     </p>
 
@@ -55,10 +61,10 @@ export default function Home() {
                         <Link href="/dashboard" className="flex items-center">
                             <button
                                 type="button"
-                                className="inline-flex shadow-2xl w-full sm:w-auto text-center justify-center items-center gap-2 rounded-xl bg-gray-50 px-3.5 py-2.5 text-sm font-semibold text-gray-800 hover:bg-gray-100"
+                                className="inline-flex shadow-2xl w-full sm:w-auto text-center justify-center items-center gap-2 rounded-xl bg-slate-50 px-3.5 py-2.5 text-sm font-semibold text-slate-800 hover:bg-slate-100"
                             >
-                                <Element
-                                    className="h-6 w-6 text-gray-600"
+                                <Dash
+                                    className="h-5 w-5 text-red-600"
                                     variant='Bulk'
                                     color='currentColor'
                                 />
