@@ -12,39 +12,32 @@ import { AppContextProvider } from './context';
 import { SessionProvider } from "next-auth/react";
 import { Session } from 'next-auth';
 
-export default function Provider({ children, ...props
-}: {
-    children: React.ReactNode,
-    session: Session
-}) {
+export default function Provider({ children }: { children: React.ReactNode }) {
     const { theme } = useTheme();
 
     return (
-        <SessionProvider session={
-            props.session
-        }>
-            <AppContextProvider>
-                <ThemeProvider attribute="class">
-                    <div
-                        className="relative bg-slate-100 dark:bg-slate-950 h-full min-h-screen w-full flex flex-col justify-start items-start z-10 background"
-                    >
-                        <NextTopLoader
-                            color={Colors.red[500]}
-                            initialPosition={0.08}
-                            crawlSpeed={200}
-                            height={5}
-                            crawl={true}
-                            showSpinner={false}
-                            easing="ease"
-                            speed={200}
-                            shadow={`0 0 10px ${Colors.red["500"]},0 0 5px ${Colors.red["500"]}`}
-                        />
-                        {children}
-                        <ToastProvider />
-                    </div>
-                </ThemeProvider>
-            </AppContextProvider>
-        </SessionProvider>
+
+        <AppContextProvider>
+            <ThemeProvider attribute="class">
+                <div
+                    className="relative bg-slate-100 dark:bg-slate-950 h-full min-h-screen w-full flex flex-col justify-start items-start z-10 background"
+                >
+                    <NextTopLoader
+                        color={Colors.red[500]}
+                        initialPosition={0.08}
+                        crawlSpeed={200}
+                        height={5}
+                        crawl={true}
+                        showSpinner={false}
+                        easing="ease"
+                        speed={200}
+                        shadow={`0 0 10px ${Colors.red["500"]},0 0 5px ${Colors.red["500"]}`}
+                    />
+                    {children}
+                    <ToastProvider />
+                </div>
+            </ThemeProvider>
+        </AppContextProvider>
     )
 }
 

@@ -6,8 +6,12 @@ import {
 } from 'next/font/google'
 import Provider from './provider';
 import Footer from './components/footer';
-import NavBar from './components/navBar';
 import Colors from "tailwindcss/colors";
+import { SessionProvider } from 'next-auth/react';
+import { Session } from 'next-auth';
+import dynamic from 'next/dynamic';
+import NavBar from './components/navBar';
+import AuthProvider from './authProvider';
 
 const FontFamily = Merriweather_Sans({ subsets: ['latin'] })
 
@@ -96,25 +100,32 @@ export const metadata: Metadata = {
     manifest: 'https://skymap.vercel.app/manifest.json',
 }
 
-export default function RootLayout({ children }: {
-    children: React.ReactNode
+export default function RootLayout({ children, ...props }: {
+    children: React.ReactNode,
+    session: Session
 }) {
     return (
         <html lang="en">
             <body className={
                 FontFamily.className
             }>
-                <Provider>
-                    <div className="w-full flex flex-col gap-4 min-h-screen justify-between p-4">
-                        {/* NavBar  */}
-                        <NavBar />
-                        <div className='w-full flex flex-col gap-4 flex-1 items-center justify-center'>
-                            {children}
+                <AuthProvider session={
+                    props.session
+                }>
+                    <Provider
+                        {...props}
+                    >
+                        <div className="w-full flex flex-col gap-4 min-h-screen justify-between p-4">
+                            {/* NavBar  */}
+                            <NavBar />
+                            <div className='w-full flex flex-col gap-4 flex-1 items-center justify-center'>
+                                {children}
+                            </div>
+                            {/* Footer */}
+                            <Footer />
                         </div>
-                        {/* Footer */}
-                        <Footer />
-                    </div>
-                </Provider>
+                    </Provider>
+                </AuthProvider>
             </body>
         </html>
     )

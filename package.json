@@ -35,7 +35,7 @@
     "iconsax-react": "^0.0.8",
     "mapbox-gl": "^2.15.0",
     "net": "^1.0.2",
-    "next": "^13.5.2",
+    "next": "^13.5.4",
     "next-auth": "^4.23.2",
     "next-themes": "^0.2.1",
     "nextjs-toploader": "^1.4.2",
