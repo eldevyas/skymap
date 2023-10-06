@@ -222,11 +222,11 @@ export const AppContextProvider = ({ children }: {
 
 
     useEffect(() => {
-        // Fetch the user location only if it's a dashboard page.
-        if (pathname.includes('dashboard')) {
+        // Fetch the user location only if it's a dashboard page, and no location is set.
+        if (pathname === '/dashboard' && !selectedCity && !userLocation) {
             getUserLocation();
         }
-    }, [pathname])
+    }, [pathname, userLocation, selectedCity])
 
     // useEffect for when the selectedCity changes.
     useEffect(() => {
