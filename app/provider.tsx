@@ -20,7 +20,7 @@ const BeamsBackground = () => {
 
             {/* Full Size Grid */}
             <div
-                className="relative w-full h-full min-h-screen background -z-30"
+                className="relative w-full h-full min-h-screen background -z-30 mix-blend-screen"
             />
         </div>
     )
