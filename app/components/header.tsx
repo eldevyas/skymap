@@ -7,9 +7,9 @@ import HeroImage from "public/images/hero.jpg";
 
 export default function Header() {
     return (
-        <div className="mx-auto w-full max-w-7xl p-10 h-auto relative overflow-hidden lg:flex lg:gap-x-20 flex flex-row justify-between items-center gap-4 flex-wrap">
+        <div className="mx-auto w-full max-w-7xl h-auto relative overflow-hidden lg:flex lg:gap-x-20 flex flex-row justify-between items-center gap-10 flex-wrap">
             <div className="mx-auto max-w-lg text-left lg:mx-0 lg:flex-auto lg:py-32 relative z-30">
-                <Link href="" className="inline-flex justify-between items-center p-1.5 pr-4 mb-7 text-sm text-slate-700 bg-slate-50 rounded-3xl dark:bg-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-600 select-none" role="alert">
+                <Link href="/dashboard" className="inline-flex justify-between items-center p-1.5 pr-4 mb-7 text-sm text-slate-700 bg-slate-50 rounded-3xl dark:bg-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-600 select-none" role="alert">
                     <span className="text-xs bg-red-600 rounded-xl text-white px-3 py-1.5 mr-3">New</span>
                     <span className="text-sm font-medium">
                         {/* Authentication is now Functional */}
@@ -50,11 +50,11 @@ export default function Header() {
             </div>
 
             {/* Image */}
-            <div className="relative mx-auto max-w-lg lg:mx-0 lg:flex-1 h-96 rounded-3xl overflow-hidden bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-600">
+            <div className="relative mx-auto max-w-lg lg:mx-0 lg:flex-1 min-h-[26rem] rounded-3xl overflow-hidden bg-slate-50 dark:bg-slate-900 border border-slate-300 dark:border-slate-600 w-full min-w-[250px] h-full">
                 <Image
                     className="object-cover object-center"
                     src={HeroImage}
-                    placeholder='blur'
+                    placeholder="blur"
                     alt="SkyMap"
                     fill
                 />
