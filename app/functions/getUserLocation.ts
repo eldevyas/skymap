@@ -26,7 +26,7 @@ export async function getUserLocationWithCoordinates(): Promise<CityType> {
                                 return [];
                             });
 
-                        const city = response.data[0];
+                        const city = response[0];
 
                         // Resolve the city
                         resolve(city);
@@ -65,7 +65,7 @@ export async function getUserLocationWithIP(): Promise<CityType> {
                     console.error("Error fetching city details from Weather API: ", error)
                     return [];
                 });
-            const city = response.data[0];
+            const city = response[0];
 
             // Resolve the city
             resolve(city);
