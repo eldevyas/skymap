@@ -10,3 +10,24 @@
   display: none;
   appearance: none;
 }
+
+html,
+body {
+  @apply bg-slate-50 dark:bg-slate-950;
+}
+
+/* Light HTML */
+.background {
+  opacity: 1;
+  background-size: 32px 32px !important;
+}
+
+.light .background {
+  background-image: linear-gradient(#e2e8f0 1px, transparent 1px),
+    linear-gradient(to right, #e2e8f0 1px, transparent 1px);
+}
+
+.dark .background {
+  background-image: linear-gradient(#0f172a 1px, transparent 1px),
+    linear-gradient(to right, #0f172a 1px, transparent 1px) !important;
+}

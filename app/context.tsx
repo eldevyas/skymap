@@ -261,7 +261,7 @@ export const AppContextProvider = ({ children }: {
 
         // Fetch Cities from the API service.
         const Cities = await axios.get(
-            `/api/cities/search?query=${searchQuery}`
+            `/api/location?query=${searchQuery}`
         )
             .then((response) => {
                 // If there is a response, return it.

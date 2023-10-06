@@ -6,10 +6,21 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url)
 
     const openWeatherApiKey = process.env.OPEN_WEATHER_API_KEY;
+    const weatherApiKey = process.env.WEATHER_API_KEY;
 
     const lat = searchParams.get('lat');
     const lon = searchParams.get('lon');
 
+    if (!lat || !lon) {
+        return new Response(JSON.stringify({
+            Error: "Latitude or Longitude not found!",
+            Message: "Please add latitude and longitude to your query params.",
+        }), {
+            headers: {
+                'content-type': 'application/json;charset=UTF-8',
+            },
+        });
+    }
 
     if (!openWeatherApiKey) {
         return new Response(JSON.stringify({
