@@ -8,6 +8,7 @@ import AppContext, { CityType } from '@/app/context';
 import toast from 'react-hot-toast';
 import Flags, { hasFlag } from 'country-flag-icons';
 import Flag from 'country-flag-icons/react/3x2';
+import { usePathname } from 'next/navigation';
 
 export default function SearchCity() {
     const {

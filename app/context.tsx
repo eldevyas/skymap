@@ -172,6 +172,11 @@ const AppContext = createContext<GlobalContextType>({
 export const AppContextProvider = ({ children }: {
     children: React.ReactNode
 }) => {
+    // Pathname - Track the current page's pathname.
+    const router = useRouter();
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
     // Loading - Whether the app is loading or not.
     const [isLoading, setLoading] = React.useState<boolean>(true);
 
@@ -214,9 +219,7 @@ export const AppContextProvider = ({ children }: {
     const [queryCities,
         setQueryCities] = React.useState<CityType[]>([]);
 
-    const router = useRouter();
-    const pathname = usePathname();
-    const searchParams = useSearchParams();
+
 
     useEffect(() => {
         // Fetch the user location only if it's a dashboard page.
@@ -251,6 +254,11 @@ export const AppContextProvider = ({ children }: {
         // Set Selected City
         setSelectedCity(city);
 
+        // If the current pathname is the home "/", then redirect to "/dashboard".
+        if (pathname === '/') {
+            router.push('/dashboard');
+        }
+
         // Inform the user that they have selected a new city.
         toast.success(`You've selected ${city.mainText}.`);
     }
@@ -273,11 +281,14 @@ export const AppContextProvider = ({ children }: {
                 return [];
             });
 
+        // The API might return an Array Record with a Null Value, we have to make sure any Null Records to be removed, this will cause errors.
+        const CitiesWithoutNullRecords = Cities.filter((city: CityType) => city !== null);
+
         // Set Loading to false
         setLoading(false);
 
         // Return the Cities.
-        return Cities;
+        return CitiesWithoutNullRecords;
     }
 
     async function getUserLocation(): Promise<CityType> {
@@ -317,7 +328,7 @@ export const AppContextProvider = ({ children }: {
             let foundLocation = userCityLocationWithGPS || userCityLocationWithIPAddress;
 
             // If the user's location was not found, set it to a default location.
-            if (!foundLocation) {
+            if (!foundLocation || foundLocation === null) {
                 foundLocation = {
                     id: 1,
                     mainText: 'London',

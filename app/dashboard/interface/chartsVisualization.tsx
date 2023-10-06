@@ -404,8 +404,8 @@ function HumidityChart() {
                 show: true,
                 strokeDashArray: 4,
                 padding: {
-                    left: 0,
-                    right: 0,
+                    left: 20,
+                    right: 20,
                     top: 0,
                     bottom: 20,
                 },
