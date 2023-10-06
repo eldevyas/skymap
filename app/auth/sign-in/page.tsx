@@ -84,12 +84,14 @@ export default function LoginPage() {
                     { callbackUrl: "/dashboard" }
                 );
                 if (
-                    !res.ok
+                    !res.ok || !res || res.error
                 ) {
                     reject(res.error);
+
+                    // Trigger error toast
+                    throw new Error(res.error);
                 } else {
                     resolve(res);
-
                     // Redirect to dashboard
                     router.push("/dashboard");
                 }
@@ -98,9 +100,12 @@ export default function LoginPage() {
             {
                 loading: "Signing in...",
                 success: "Signed in successfully! Redirecting...",
-                error: "Failed to sign in. Please try again.",
+                error: "Sign in failed! Please check your credentials and try again.",
             }
         );
+
+        // Enable button  
+        setLoading(false);
     };
 
 

@@ -1,10 +1,8 @@
 "use client";
 
-
 import React from 'react'
 import NextTopLoader from 'nextjs-toploader';
 import toast, { ToastBar, Toaster, resolveValue } from "react-hot-toast";
-
 import Colors from "tailwindcss/colors"
 import { CloseSquare } from 'iconsax-react';
 import { ThemeProvider, useTheme } from "next-themes";
@@ -12,16 +10,33 @@ import { AppContextProvider } from './context';
 import { SessionProvider } from "next-auth/react";
 import { Session } from 'next-auth';
 
+const BeamsBackground = () => {
+    return (
+        <div className="absolute top-0 left-0 right-0 bottom-0 -z-30 w-full h-full min-h-screen overflow-hidden">
+            {/* Blob Blurry Shapes */}
+            <div className="absolute skew-x-12 top-64 rotate-45 left-1/2 translate-x-1/2 scale-x-150 -translate-y-1/2 w-96 h-64 bg-red-600 rounded-full opacity-25 filter dark:bg-red-600 -z-40 blur-3xl scale-150" />
+            <div className="absolute skew-x-12 bottom-16 rotate-45 left-1/3 translate-x-1/2 scale-x-150 -translate-y-1/2 w-96 h-64 bg-sky-600 rounded-full opacity-25 filter dark:bg-sky-600 -z-40 blur-3xl scale-150" />
+            <div className="absolute skew-x-12 bottom-64 rotate-45 right-2/3 translate-x-2/3 scale-x-150 -translate-y-1/2 w-96 h-64 bg-red-400 rounded-full opacity-25 filter dark:bg-red-400 -z-50 blur-3xl scale-150" />
+
+            {/* Full Size Grid */}
+            <div
+                className="relative w-full h-full min-h-screen background -z-30"
+            />
+        </div>
+    )
+}
+
 export default function Provider({ children }: { children: React.ReactNode }) {
     const { theme } = useTheme();
+    const [state, setState] = React.useState("The code sounds are good but quiet slow, they probably slow down the OS, or they have some kind of delay.");
 
     return (
-
         <AppContextProvider>
             <ThemeProvider attribute="class">
                 <div
-                    className="relative bg-slate-100 dark:bg-slate-950 h-full min-h-screen w-full flex flex-col justify-start items-start z-10 background"
+                    className="relative bg-slate-100 dark:bg-slate-950 h-full min-h-screen w-full flex flex-col justify-start items-start z-10"
                 >
+                    <BeamsBackground />
                     <NextTopLoader
                         color={Colors.red[500]}
                         initialPosition={0.08}
@@ -40,7 +55,6 @@ export default function Provider({ children }: { children: React.ReactNode }) {
         </AppContextProvider>
     )
 }
-
 
 const ToastProvider = () => {
     return (
