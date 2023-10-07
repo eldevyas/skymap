@@ -1,23 +1,30 @@
 import type { NextAuthOptions } from "next-auth"
 import axios from "axios"
 import CredentialsProvider from "next-auth/providers/credentials";
-
+import GitHubProvider from 'next-auth/providers/github';
+import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions: NextAuthOptions = {
     secret: process.env.NEXTAUTH_SECRET,
-    pages: {
-        signIn: '/auth/sign-in',
-        signOut: '/auth/sign-out',
-        error: '/auth/error', // Error code passed in query string as ?error=
-        verifyRequest: '/auth/confirm-email', // (used for check email message)
+    // pages: {
+    //     signIn: '/auth/sign-in',
+    //     signOut: '/auth/sign-out',
+    //     error: '/auth/error', // Error code passed in query string as ?error=
+    //     verifyRequest: '/auth/confirm-email', // (used for check email message)
+    // },
+    theme: {
+        colorScheme: 'light',
     },
-    session: {
-        strategy: "jwt",
-        maxAge: 30 * 24 * 60 * 60, // 30 days
-        updateAge: 24 * 60 * 60, // 24 hours
-    },
-    callbacks: {},
+    debug: true,
     providers: [
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID ?? "",
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
+        }),
+        GitHubProvider({
+            clientId: process.env.GITHUB_CLIENT_ID ?? "",
+            clientSecret: process.env.GITHUB_CLIENT_SECRET ?? "",
+        }),
         CredentialsProvider({
             name: 'Credentials',
             type: "credentials",

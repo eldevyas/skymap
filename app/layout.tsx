@@ -12,8 +12,14 @@ import { Session } from 'next-auth';
 import dynamic from 'next/dynamic';
 import NavBar from './components/navBar';
 import AuthProvider from './authProvider';
+import { config } from '@fortawesome/fontawesome-svg-core'
+
+import '@fortawesome/fontawesome-svg-core/styles.css'
+config.autoAddCss = false
 
 const FontFamily = Merriweather_Sans({ subsets: ['latin'] })
+
+
 
 export const metadata: Metadata = {
     metadataBase: new URL('https://skymap.vercel.app/'),
@@ -106,6 +112,9 @@ export default function RootLayout({ children, ...props }: {
 }) {
     return (
         <html lang="en">
+            <head>
+                <script src="https://kit.fontawesome.com/728612d1ce.js" crossOrigin="anonymous" async />
+            </head>
             <body className={
                 FontFamily.className
             }>
@@ -127,6 +136,6 @@ export default function RootLayout({ children, ...props }: {
                     </Provider>
                 </AuthProvider>
             </body>
-        </html>
+        </html >
     )
 }

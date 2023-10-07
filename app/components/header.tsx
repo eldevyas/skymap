@@ -9,7 +9,7 @@ export default function Header() {
     return (
         <div className="mx-auto w-full max-w-7xl h-auto relative overflow-hidden lg:flex lg:gap-x-20 flex flex-row justify-between items-center gap-10 flex-wrap">
             <div className="mx-auto max-w-lg text-left lg:mx-0 lg:flex-auto lg:py-32 relative z-30">
-                <Link href="/dashboard" className="inline-flex justify-between items-center p-1.5 pr-4 mb-7 text-sm text-slate-700 bg-slate-50 rounded-3xl dark:bg-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-600 select-none" role="alert">
+                <Link href="/dashboard" className="inline-flex w-full sm:w-auto justify-between items-center p-1.5 pr-4 mb-7 text-sm text-slate-700 bg-slate-50 rounded-3xl dark:bg-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-600 select-none" role="alert">
                     <span className="text-xs bg-red-600 rounded-xl text-white px-3 py-1.5 mr-3">New</span>
                     <span className="text-sm font-medium">
                         {/* Authentication is now Functional */}
@@ -20,7 +20,7 @@ export default function Header() {
                         color='currentColor'
                     />
                 </Link>
-                <h2 className="relative text-slate-800 dark:text-slate-200 sm:text-4xl text-shadow-lg z-30 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl">
+                <h2 className="relative text-red-600 dark:text-red-600 sm:text-4xl text-shadow-lg z-30 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl">
                     Stay Ahead with <span
                         className="text-slate-800 dark:text-slate-200"
                     >SkyMap</span>.
