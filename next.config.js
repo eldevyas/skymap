@@ -7,6 +7,12 @@ const nextConfig = {
       "maps.googleapis.com",
       "openweathermap.org",
     ],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
   },
   // Allow CORS
   async headers() {

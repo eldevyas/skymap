@@ -123,7 +123,6 @@ function UserDropdown() {
                                         null
                                     )
                             }
-
                         </Menu.Button>
                         <Transition
                             enter="transition duration-100 ease-out"
@@ -169,10 +168,10 @@ function UserDropdown() {
                                             <button
                                                 type="button"
                                                 onClick={() => {
-                                                    signOut();
+                                                    signOut({ redirect: false });
                                                     close();
                                                 }}
-                                                className={`inline-flex justify-start items-center gap-2 rounded-lg px-3.5 py-2.5 text-sm font-semibold hover:bg-red-600 dark:hover:bg-red-600 hover:text-white dark:text-slate-50 dark:hover:text-white w-auto min-h-fit min-w-max`}
+                                                className={`inline-flex justify-start items-center gap-2 rounded-lg px-3.5 py-2.5 text-sm font-semibold bg-red-100 dark:bg-red-950 hover:bg-red-600 dark:hover:bg-red-600 hover:text-white dark:text-slate-50 dark:hover:text-white w-full min-h-fit min-w-max`}
                                             >
                                                 <Logout
                                                     className={`h-5 w-5 ${active ? 'text-white dark:text-white' : 'text-red-600 dark:text-red-400'}`}
