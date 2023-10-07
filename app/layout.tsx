@@ -8,10 +8,10 @@ import Provider from './provider';
 import Footer from './components/footer';
 import Colors from "tailwindcss/colors";
 import { SessionProvider } from 'next-auth/react';
-import { Session } from 'next-auth';
+import { Session, getServerSession } from 'next-auth';
 import dynamic from 'next/dynamic';
 import NavBar from './components/navBar';
-import AuthProvider from './authProvider';
+import AuthProvider from './sessionProvider';
 import { config } from '@fortawesome/fontawesome-svg-core'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
@@ -106,24 +106,17 @@ export const metadata: Metadata = {
     manifest: 'https://skymap.vercel.app/manifest.json',
 }
 
-export default function RootLayout({ children, ...props }: {
-    children: React.ReactNode,
-    session: Session
-}) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+    const session = await getServerSession();
+
     return (
         <html lang="en">
             <head>
                 <script src="https://kit.fontawesome.com/728612d1ce.js" crossOrigin="anonymous" async />
             </head>
-            <body className={
-                FontFamily.className
-            }>
-                <AuthProvider session={
-                    props.session
-                }>
-                    <Provider
-                        {...props}
-                    >
+            <body className={FontFamily.className}>
+                <AuthProvider session={session}>
+                    <Provider>
                         <div className="w-full flex flex-col gap-4 min-h-screen justify-between p-4">
                             {/* NavBar  */}
                             <NavBar />

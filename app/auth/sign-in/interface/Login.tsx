@@ -122,6 +122,12 @@ export default function LoginPage() {
                 <div className="flex flex-row gap-2 justify-between w-full flex-wrap">
                     <button
                         type="button"
+                        onClick={() => {
+                            signIn(
+                                "google",
+                                { callbackUrl: "/dashboard" }
+                            );
+                        }}
                         className="inline-flex justify-center items-center text-center flex-1 bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-3xl focus:border-red-500 w-full py-2.5 px-5 dark:bg-slate-900 dark:border-slate-600 dark:placeholder-slate-400 dark:text-white hover:bg-slate-200 dark:hover:border-red-100 dark:hover:bg-red-600 dark:hover:text-red-100"
                     >
                         <FontAwesomeIcon
@@ -135,6 +141,12 @@ export default function LoginPage() {
                     </button>
                     <button
                         type="button"
+                        onClick={() => {
+                            signIn(
+                                "github",
+                                { callbackUrl: "/dashboard" }
+                            );
+                        }}
                         className="inline-flex justify-center items-center text-center flex-1 bg-slate-50 border border-slate-300 text-slate-900 text-sm rounded-3xl focus:border-red-500 w-full py-2.5 px-5 dark:bg-slate-900 dark:border-slate-600 dark:placeholder-slate-400 dark:text-white hover:bg-slate-200 dark:hover:border-red-100 dark:hover:bg-red-600 dark:hover:text-red-100"
                     >
                         <FontAwesomeIcon
