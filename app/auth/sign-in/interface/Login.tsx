@@ -9,7 +9,7 @@ import Image from "next/image";
 import { SignInResponse, signIn } from "next-auth/react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons'
-import { authErrorCodes } from "../../error/page";
+import { authErrorCodes } from "../../error/errors/authErrors";
 
 const Logo = ({ isLoading }: { isLoading: boolean }) => {
     const router = useRouter();
