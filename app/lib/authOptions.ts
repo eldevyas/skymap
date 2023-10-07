@@ -6,16 +6,18 @@ import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions: NextAuthOptions = {
     secret: process.env.NEXTAUTH_SECRET,
-    // pages: {
-    //     signIn: '/auth/sign-in',
-    //     signOut: '/auth/sign-out',
-    //     error: '/auth/error', // Error code passed in query string as ?error=
-    //     verifyRequest: '/auth/confirm-email', // (used for check email message)
-    // },
+    pages: {
+        signIn: '/auth/sign-in',  // Displays signin buttons
+        signOut: '/auth/sign-out', // Signs out user and displays message
+        error: '/auth/error', // Error code passed in query string as ?error=
+    },
     theme: {
         colorScheme: 'light',
     },
-    debug: true,
+    session: {
+        strategy: "jwt",
+        maxAge: 30 * 24 * 60 * 60,
+    },
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID ?? "",
@@ -48,19 +50,12 @@ export const authOptions: NextAuthOptions = {
                 // I will use a single user for this example - and later will implement a real authentication
                 const validUser = {
                     id: 1,
-                    fullName: 'Yassine Chettouch',
-                    username: 'yassine',
-                    email: 'yassinechettouch@gmail.com',
-                    password: '123456',
+                    name: "Yassine Elouafi",
+                    email: "yassinechettouch@gmail.com",
+                    image: "https://avatars.githubusercontent.com/u/183598?s=400&u=5a1a0b2a1e0d0c3b9f9f4f1e0c9c3f2d6e6e9a3f&v=4",
                 }
 
-                const isValid = email === validUser.email && password === validUser.password;
-
-                if (isValid) {
-                    return validUser;
-                } else {
-                    return null;
-                }
+                return validUser;
             }
         })
     ],

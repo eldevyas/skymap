@@ -6,9 +6,10 @@ import { toast } from "react-hot-toast";
 import Link from "next/link";
 import { Eye, EyeSlash, LoginCurve } from "iconsax-react";
 import Image from "next/image";
-import { signIn } from "next-auth/react";
+import { SignInResponse, signIn } from "next-auth/react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGoogle, faGithub } from '@fortawesome/free-brands-svg-icons'
+import { authErrorCodes } from "../../error/errors/authErrors";
 
 const Logo = ({ isLoading }: { isLoading: boolean }) => {
     const router = useRouter();
@@ -74,40 +75,32 @@ export default function LoginPage() {
             return false;
         }
 
-        toast.promise(new Promise(
-            async (resolve, reject) => {
-                const res: any = await signIn(
-                    "credentials",
-                    {
-                        email: email,
-                        password: password,
-                        redirect: false,
-                    },
-                    { callbackUrl: "/dashboard" }
-                );
-                if (
-                    !res.ok || !res || res.error
-                ) {
-                    reject(res.error);
+        // Sign in
+        const result: SignInResponse = await signIn("credentials", {
+            redirect: false,
+            email,
+            password,
+            callbackUrl: "/dashboard",
+        }) as SignInResponse;
 
-                    // Trigger error toast
-                    throw new Error(res.error);
-                } else {
-                    resolve(res);
-                    // Redirect to dashboard
-                    router.push("/dashboard");
-                }
-            }
-        ),
-            {
-                loading: "Signing in...",
-                success: "Signed in successfully! Redirecting...",
-                error: "Sign in failed! Please check your credentials and try again.",
-            }
-        );
+        if (result.ok
+            && result.url
+            && typeof result.url === "string"
+            && result.url.length > 0
+            && result.status === 200
+            && !result.error
+        ) {
+            // Redirect to dashboard
+            router.push("/dashboard");
+        } else {
+            setLoading(false);
 
-        // Enable button  
-        setLoading(false);
+            const errorMessage = result.error === "CredentialsSignin" ? "Invalid email or password." : authErrorCodes[result.error as keyof typeof authErrorCodes] ?? "Something went wrong.";
+            toast.error(result.error, {
+                icon: "❌",
+                duration: 1000,
+            });
+        }
     };
 
 

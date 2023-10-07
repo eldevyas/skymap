@@ -7,11 +7,10 @@ import {
 import Provider from './provider';
 import Footer from './components/footer';
 import Colors from "tailwindcss/colors";
-import { SessionProvider } from 'next-auth/react';
 import { Session, getServerSession } from 'next-auth';
 import dynamic from 'next/dynamic';
 import NavBar from './components/navBar';
-import AuthProvider from './sessionProvider';
+import SessionProvider from './sessionProvider';
 import { config } from '@fortawesome/fontawesome-svg-core'
 
 import '@fortawesome/fontawesome-svg-core/styles.css'
@@ -111,11 +110,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
     return (
         <html lang="en">
-            <head>
-                <script src="https://kit.fontawesome.com/728612d1ce.js" crossOrigin="anonymous" async />
-            </head>
             <body className={FontFamily.className}>
-                <AuthProvider session={session}>
+                <SessionProvider session={session}>
                     <Provider>
                         <div className="w-full flex flex-col gap-4 min-h-screen justify-between p-4">
                             {/* NavBar  */}
@@ -127,7 +123,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
                             <Footer />
                         </div>
                     </Provider>
-                </AuthProvider>
+                </SessionProvider>
             </body>
         </html >
     )
