@@ -39,6 +39,7 @@ export default function SearchCity() {
                                 className="block w-full rounded-3xl border border-slate-300 outline-none bg-slate-50 px-5 py-2.5 pl-14 text-sm text-slate-900 focus:border-red-500 focus:ring-red-500  dark:border-slate-600 dark:bg-slate-900 dark:text-white dark:placeholder-slate-400 dark:focus:border-red-500 dark:focus:ring-red-500"
                                 placeholder="Search City..."
                                 required
+                                autoComplete="off"
                                 value={values.query}
                                 displayValue={(selected: typeof values.selectedCity) => {
                                     if (selected) {

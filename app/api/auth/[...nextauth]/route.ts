@@ -1,4 +1,5 @@
-import NextAuth from "next-auth"
+import NextAuth from "next-auth";
+import GitHubProvider from "next-auth/providers/github";
 import type { NextApiRequest, NextApiResponse } from "next"
 import { authOptions } from "@/app/lib/authOptions"
 

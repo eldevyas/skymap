@@ -31,3 +31,39 @@ body {
   background-image: linear-gradient(#0f172a 1px, transparent 1px),
     linear-gradient(to right, #0f172a 1px, transparent 1px) !important;
 }
+
+/* Privacy policy page */
+.HTMLPAGE {
+  @apply w-full mx-auto max-w-7xl relative bg-slate-50 dark:bg-slate-900 px-6 py-4 rounded-3xl sm:px-16 lg:gap-x-20 lg:px-24 p-10 border border-slate-300 outline-none dark:border-slate-600;
+}
+
+.HTMLPAGE h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.HTMLPAGE h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.HTMLPAGE h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.HTMLPAGE p {
+  line-height: 1.5rem;
+}
+
+.HTMLPAGE ul {
+  list-style: none;
+  margin-left: 1rem;
+}
+
+.HTMLPAGE li {
+  margin-bottom: 0.5rem;
+}
