@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import React from 'react'
 import LoginPage from './interface/Login';
 import { InferGetServerSidePropsType } from 'next';
+import { redirect } from 'next/navigation';
 
 export default async function SignIn({ csrfToken }: any) {
     const session = await getServerSession(authOptions);
@@ -11,7 +12,7 @@ export default async function SignIn({ csrfToken }: any) {
     // Note: Make sure not to redirect to the same page
     // To avoid an infinite loop!
     if (session) {
-        return { redirect: { destination: "/" } };
+        return redirect('/dashboard');
     }
 
     return (
