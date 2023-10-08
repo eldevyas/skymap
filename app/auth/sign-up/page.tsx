@@ -1,6 +1,7 @@
 import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation';
 import React from 'react'
+import RegisterationInterface from './interface/Register';
 
 export default async function RegisterPage() {
     const session = await getServerSession();
@@ -9,7 +10,5 @@ export default async function RegisterPage() {
         return { redirect: { destination: "/" } };
     }
 
-    return (
-        <div>RegisterPage</div>
-    )
+    return <RegisterationInterface />;
 }

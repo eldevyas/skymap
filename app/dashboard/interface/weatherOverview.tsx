@@ -6,7 +6,7 @@ import Image from "next/image";
 const CityMarker = ({ cityName, lat, lng }: { cityName: string, lat: number, lng: number }) => {
     return (
         <div
-            className='w-3 h-3 rounded-full bg-red-500 dark:bg-red-400'
+            className='w-3 h-3 rounded-full bg-amber-500 dark:bg-amber-400'
         >
             {cityName}
         </div>
@@ -98,8 +98,8 @@ export default function WeatherOverview() {
                                     <p
                                         className='text-sm tracking-tight flex gap-2'
                                     >
-                                        <span className="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-700/10
-                                dark:bg-red-900 dark:text-red-300 dark:ring-red-300/10">
+                                        <span className="inline-flex items-center rounded-md bg-amber-50 px-2 py-1 text-xs font-medium text-amber-600 ring-1 ring-inset ring-amber-600/10
+                                dark:bg-amber-900 dark:text-amber-300 dark:ring-amber-300/10">
                                             {values.selectedCity?.latitude}, {values.selectedCity?.longitude}
                                         </span>
                                     </p>
@@ -140,7 +140,7 @@ export default function WeatherOverview() {
                                 {/* Refresh Button */}
                                 <button
                                     type='button'
-                                    className='flex items-center gap-2 text-red-400 dark:text-red-400 text-sm font-bold tracking-tight sm:text-md'
+                                    className='flex items-center gap-2 text-amber-400 dark:text-amber-400 text-sm font-bold tracking-tight sm:text-md'
                                     onClick={utilities.getUserLocation}
                                 >
                                     <Location
@@ -259,7 +259,7 @@ export default function WeatherOverview() {
                                 >
                                     <div className='w-16 h-16 flex justify-center items-center rounded-xl bg-slate-100 dark:bg-slate-800 overflow-hidden text-slate-400 dark:text-slate-400'>
                                         <CloudFog
-                                            className='h-10 w-10 text-red-400 dark:text-red-400'
+                                            className='h-10 w-10 text-amber-400 dark:text-amber-400'
                                             color='currentColor'
                                             variant='Bulk'
                                         />

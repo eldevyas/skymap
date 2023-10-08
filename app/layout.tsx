@@ -86,8 +86,8 @@ export const metadata: Metadata = {
         type: 'website',
     },
     themeColor: [
-        { media: '(prefers-color-scheme: light)', color: Colors.red[600] },
-        { media: '(prefers-color-scheme: dark)', color: Colors.red[600] },
+        { media: '(prefers-color-scheme: light)', color: Colors.amber[600] },
+        { media: '(prefers-color-scheme: dark)', color: Colors.amber[600] },
     ],
     robots: {
         index: false,

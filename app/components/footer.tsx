@@ -13,7 +13,7 @@ export default function Footer() {
                         href="https://www.github.com/eldevyas/SkyMap"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-red-600 dark:text-red-500 hover:text-red-700 dark:hover:text-red-400 hover:underline"
+                        className="text-amber-500 dark:text-amber-500 hover:text-amber-600 dark:hover:text-amber-400 hover:underline"
                     >
                         YASSINE CHETTOUCH
                     </a>{" "}
