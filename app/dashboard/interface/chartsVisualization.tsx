@@ -73,7 +73,7 @@ const TemperatureChart = () => {
             data: [
                 ...values.weatherData.hourlyForecast.hourly.temperature_2m
             ],
-            color: Colors.red[600],
+            color: Colors.amber[600],
         },
         {
             name: 'Feels Like',
@@ -98,11 +98,11 @@ const TemperatureChart = () => {
                     autoScaleYaxis: false,
                     zoomedArea: {
                         fill: {
-                            color: Colors.red[600],
+                            color: Colors.amber[600],
                             opacity: 0.4
                         },
                         stroke: {
-                            color: Colors.red[600],
+                            color: Colors.amber[600],
                             opacity: 0.4,
                             width: 1
                         }
@@ -174,8 +174,8 @@ const TemperatureChart = () => {
                 gradient: {
                     opacityFrom: 0.65,
                     opacityTo: 0.15,
-                    shade: Colors.red[600],
-                    gradientToColors: [Colors.red[500]],
+                    shade: Colors.amber[600],
+                    gradientToColors: [Colors.amber[500]],
                     type: "vertical",
                 },
             },
@@ -387,8 +387,8 @@ function HumidityChart() {
                 gradient: {
                     opacityFrom: 0.55,
                     opacityTo: 0,
-                    shade: Colors.red[600],
-                    gradientToColors: [Colors.red[500]],
+                    shade: Colors.amber[600],
+                    gradientToColors: [Colors.amber[500]],
                 },
             },
             dataLabels: {

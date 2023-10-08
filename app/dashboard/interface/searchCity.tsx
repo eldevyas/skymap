@@ -36,7 +36,7 @@ export default function SearchCity() {
                             </div>
                             <Combobox.Input
                                 type="text"
-                                className="block w-full rounded-3xl border border-slate-300 outline-none bg-slate-50 px-5 py-2.5 pl-14 text-sm text-slate-900 focus:border-red-500 focus:ring-red-500  dark:border-slate-600 dark:bg-slate-900 dark:text-white dark:placeholder-slate-400 dark:focus:border-red-500 dark:focus:ring-red-500"
+                                className="block w-full rounded-3xl border border-slate-300 outline-none bg-slate-50 px-5 py-2.5 pl-14 text-sm text-slate-900 focus:border-amber-500 focus:ring-amber-500  dark:border-slate-600 dark:bg-slate-900 dark:text-white dark:placeholder-slate-400 dark:focus:border-amber-500 dark:focus:ring-amber-500"
                                 placeholder="Search City..."
                                 required
                                 autoComplete="off"
@@ -56,7 +56,7 @@ export default function SearchCity() {
                         </div>
                         <Combobox.Button
                             type='button'
-                            className="ml-2 rounded-3xl border border-red-700 bg-red-600 p-2.5 text-sm font-medium text-white hover:bg-red-700 focus:outline-none dark:bg-red-600 dark:hover:bg-red-700"
+                            className="ml-2 rounded-3xl border border-amber-600 bg-amber-500 p-2.5 text-sm font-medium text-white hover:bg-amber-600 focus:outline-none dark:bg-amber-500 dark:hover:bg-amber-600"
                         >
                             <SearchNormal
                                 className="h-5 w-5"
@@ -87,7 +87,7 @@ export default function SearchCity() {
                                                     <Combobox.Option
                                                         key={city.id}
                                                         className={({ active }) =>
-                                                            `relative inline-flex justify-start items-center gap-2 rounded-lg px-3.5 py-2.5 text-sm font-semibold hover:bg-red-600 dark:hover:bg-red-600 hover:text-white ${active ? 'bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-50' : 'dark:bg-none dark:text-slate-200 dark:hover:text-white dark:hover:bg-red-600'}`
+                                                            `relative inline-flex justify-start items-center gap-2 rounded-lg px-3.5 py-2.5 text-sm font-semibold hover:bg-amber-500 dark:hover:bg-amber-500 hover:text-white ${active ? 'bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-50' : 'dark:bg-none dark:text-slate-200 dark:hover:text-white dark:hover:bg-amber-500'}`
                                                         }
                                                         value={city}
                                                     >

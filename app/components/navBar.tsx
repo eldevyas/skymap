@@ -70,7 +70,7 @@ export default function NavBar() {
                             <Link href="/auth/sign-in" className="flex items-center">
                                 <button
                                     type="button"
-                                    className="inline-flex text-center justify-center items-center gap-2 rounded-xl bg-slate-800 text-slate-200 px-3.5 py-2.5 text-sm font-semibold hover:bg-slate-900 dark:bg-red-600 dark:hover:bg-red-700 dark:text-text-red-200"
+                                    className="inline-flex text-center justify-center items-center gap-2 rounded-xl bg-slate-800 text-slate-200 px-3.5 py-2.5 text-sm font-semibold hover:bg-slate-900 dark:bg-amber-500 dark:hover:bg-amber-600 dark:text-text-amber-200"
                                 >
                                     <Lock variant="Bulk" color="currentColor" />
                                     <span className="hidden text-sm font-semibold md:block">
@@ -109,7 +109,7 @@ function UserDropdown() {
                 isLoading ? null : ((
                     <Menu as="div" className="z-50 relative inline-block text-left gap-4">
                         <Menu.Button
-                            className={`inline-flex h-full justify-center items-center gap-2 rounded-xl text-slate-900 px-3.5 py-2.5 text-sm font-semibold dark:text-white relative aspect-square bg-gradient-to-br from-red-600 to-sky-600 hover:from-red-700 hover:to-sky-700 overflow-hidden`}
+                            className={`inline-flex h-full justify-center items-center gap-2 rounded-xl text-slate-900 px-3.5 py-2.5 text-sm font-semibold dark:text-white relative aspect-square bg-gradient-to-br from-amber-500 to-sky-600 hover:from-amber-600 hover:to-sky-700 overflow-hidden`}
                         >
                             {
                                 session?.user?.image ?
@@ -135,33 +135,31 @@ function UserDropdown() {
                             <Menu.Items
                                 className={`absolute mt-1 max-h-60 top-full w-auto max-w-sm overflow-auto text-base sm:text-sm z-50 p-2 gap-1 origin-top-right bg-slate-50 rounded-xl shadow-2xl focus:outline-none dark:bg-slate-900 dark:divide-slate-700 flex flex-col right-0 border border-slate-300 dark:border-slate-600`}>
                                 {/* User Name and Email */}
-                                <Menu.Item>
-                                    {({ active, close }) => (
-                                        <div className="flex flex-row flex-wrap gap-2 mb-4 px-3.5 py-2.5">
-                                            <div
-                                                className={`inline-flex h-full justify-center items-center gap-2 rounded-xl text-slate-900 px-3.5 py-2.5 text-sm font-semibold dark:text-white relative aspect-square bg-gradient-to-br from-red-600 to-sky-600 hover:from-red-700 hover:to-sky-700 overflow-hidden`}
-                                            >
-                                                {
-                                                    session?.user?.image ?
-                                                        (
-                                                            <Image
-                                                                src={session?.user?.image || "/images/default.jpg"}
-                                                                alt="Profile"
-                                                                fill
-                                                            />
-                                                        ) : (
-                                                            null
-                                                        )
-                                                }
-                                            </div>
-                                            <div
-                                                className="relative flex flex-col gap-1 min-w-fit">
-                                                <span className="text-sm font-semibold text-slate-900 dark:text-white truncate">{session?.user?.name}</span>
-                                                <span className="text-xs font-medium text-slate-500 dark:text-slate-400 truncate">{session?.user?.email}</span>
-                                            </div>
+                                <div>
+                                    <div className="flex flex-row flex-wrap gap-2 mb-4 px-3.5 py-2.5">
+                                        <div
+                                            className={`inline-flex h-full justify-center items-center gap-2 rounded-xl text-slate-900 px-3.5 py-2.5 text-sm font-semibold dark:text-white relative aspect-square bg-gradient-to-br from-amber-500 to-sky-600 hover:from-amber-600 hover:to-sky-700 overflow-hidden`}
+                                        >
+                                            {
+                                                session?.user?.image ?
+                                                    (
+                                                        <Image
+                                                            src={session?.user?.image || "/images/default.jpg"}
+                                                            alt="Profile"
+                                                            fill
+                                                        />
+                                                    ) : (
+                                                        null
+                                                    )
+                                            }
                                         </div>
-                                    )}
-                                </Menu.Item>
+                                        <div
+                                            className="relative flex flex-col gap-1 min-w-fit">
+                                            <span className="text-sm font-semibold text-slate-900 dark:text-white truncate">{session?.user?.name}</span>
+                                            <span className="text-xs font-medium text-slate-500 dark:text-slate-400 truncate">{session?.user?.email}</span>
+                                        </div>
+                                    </div>
+                                </div>
                                 <Menu.Item>
                                     {({ active, close }) => (
                                         <Link href="/auth/sign-out" className="flex items-center">
@@ -171,10 +169,10 @@ function UserDropdown() {
                                                     signOut({ redirect: false });
                                                     close();
                                                 }}
-                                                className={`inline-flex justify-start items-center gap-2 rounded-lg px-3.5 py-2.5 text-sm font-semibold bg-red-100 dark:bg-red-950 hover:bg-red-600 dark:hover:bg-red-600 hover:text-white dark:text-slate-50 dark:hover:text-white w-full min-h-fit min-w-max`}
+                                                className={`inline-flex justify-start items-center gap-2 rounded-lg px-3.5 py-2.5 text-sm font-semibold bg-red-100 dark:bg-red-950 hover:bg-red-500 dark:hover:bg-red-500 hover:text-white dark:text-slate-50 dark:hover:text-white w-full min-h-fit min-w-max`}
                                             >
                                                 <Logout
-                                                    className={`h-5 w-5 ${active ? 'text-white dark:text-white' : 'text-red-600 dark:text-red-400'}`}
+                                                    className={`h-5 w-5 ${active ? 'text-white dark:text-white' : 'text-red-500 dark:text-red-400'}`}
                                                     variant="Bulk"
                                                     color="currentColor"
                                                 // size={20}
@@ -215,7 +213,7 @@ function ThemeDropdown() {
             onClick={() => { setTheme(themeName); close() }}
             className={`
         inline-flex justify-start items-baseline gap-2 rounded-lg px-3.5 py-2.5 text-sm font-semibold
-                                                hover:bg-red-600 dark:hover:bg-red-600 hover:text-white ${ThemeState === themeName ? 'bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-50' : 'dark:bg-none dark:text-slate-200 dark:hover:text-white dark:hover:bg-red-600'}
+                                                hover:bg-amber-500 dark:hover:bg-amber-500 hover:text-white ${ThemeState === themeName ? 'bg-slate-200 text-slate-600 dark:bg-slate-800 dark:text-slate-50' : 'dark:bg-none dark:text-slate-200 dark:hover:text-white dark:hover:bg-amber-500'}
       `}
         >
             <span className="flex items-center">

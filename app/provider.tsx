@@ -14,9 +14,9 @@ const BeamsBackground = () => {
     return (
         <div className="absolute top-0 left-0 right-0 bottom-0 -z-30 w-full h-full min-h-screen overflow-hidden">
             {/* Blob Blurry Shapes */}
-            <div className="absolute skew-x-12 top-64 rotate-45 left-1/2 translate-x-1/2 scale-x-150 -translate-y-1/2 w-96 h-64 bg-red-600 rounded-full opacity-25 filter dark:bg-red-600 -z-40 blur-3xl scale-150" />
+            <div className="absolute skew-x-12 top-64 rotate-45 left-1/2 translate-x-1/2 scale-x-150 -translate-y-1/2 w-96 h-64 bg-amber-500 rounded-full opacity-25 filter dark:bg-amber-500 -z-40 blur-3xl scale-150" />
             <div className="absolute skew-x-12 bottom-16 rotate-45 left-1/3 translate-x-1/2 scale-x-150 -translate-y-1/2 w-96 h-64 bg-sky-600 rounded-full opacity-25 filter dark:bg-sky-600 -z-40 blur-3xl scale-150" />
-            <div className="absolute skew-x-12 bottom-64 rotate-45 right-2/3 translate-x-2/3 scale-x-150 -translate-y-1/2 w-96 h-64 bg-red-400 rounded-full opacity-25 filter dark:bg-red-400 -z-50 blur-3xl scale-150" />
+            <div className="absolute skew-x-12 bottom-64 rotate-45 right-2/3 translate-x-2/3 scale-x-150 -translate-y-1/2 w-96 h-64 bg-amber-400 rounded-full opacity-25 filter dark:bg-amber-400 -z-50 blur-3xl scale-150" />
 
             {/* Full Size Grid */}
             <div
@@ -38,7 +38,7 @@ export default function Provider({ children }: { children: React.ReactNode }) {
                 >
                     <BeamsBackground />
                     <NextTopLoader
-                        color={Colors.red[500]}
+                        color={Colors.amber[500]}
                         initialPosition={0.08}
                         crawlSpeed={200}
                         height={5}
@@ -46,7 +46,7 @@ export default function Provider({ children }: { children: React.ReactNode }) {
                         showSpinner={false}
                         easing="ease"
                         speed={200}
-                        shadow={`0 0 10px ${Colors.red["500"]},0 0 5px ${Colors.red["500"]}`}
+                        shadow={`0 0 10px ${Colors.amber["500"]},0 0 5px ${Colors.amber["500"]}`}
                     />
                     {children}
                     <ToastProvider />
