@@ -62,7 +62,7 @@ export const metadata: Metadata = {
         siteId: '1467726470533754880',
         creator: '@eldevyas',
         creatorId: '1467726470533754880',
-        images: ['https://skymap.vercel.app/images/og-image.png'],
+        images: ['https://raw.githubusercontent.com/eldevyas/SkyMap/Development/public/images/og-image.png'],
     },
     openGraph: {
         title: 'SkyMap - Weather Forecast',
@@ -71,12 +71,12 @@ export const metadata: Metadata = {
         siteName: 'SkyMap',
         images: [
             {
-                url: 'https://skymap.vercel.app/images/og-image.png',
+                url: 'https://raw.githubusercontent.com/eldevyas/SkyMap/Development/public/images/og-image.png',
                 width: 1280,
                 height: 1280,
             },
             {
-                url: 'https://skymap.vercel.app/images/hero.jpg',
+                url: 'https://raw.githubusercontent.com/eldevyas/SkyMap/Development/public/images/hero.jpg',
                 width: 3000,
                 height: 2000,
                 alt: 'Og Image Alt',
@@ -86,8 +86,8 @@ export const metadata: Metadata = {
         type: 'website',
     },
     themeColor: [
-        { media: '(prefers-color-scheme: light)', color: Colors.amber[600] },
-        { media: '(prefers-color-scheme: dark)', color: Colors.amber[600] },
+        { media: '(prefers-color-scheme: light)', color: Colors.red[600] },
+        { media: '(prefers-color-scheme: dark)', color: Colors.red[600] },
     ],
     robots: {
         index: false,
