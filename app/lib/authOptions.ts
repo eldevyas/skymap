@@ -50,9 +50,9 @@ export const authOptions: NextAuthOptions = {
                 // I will use a single user for this example - and later will implement a real authentication
                 const validUser = {
                     id: 1,
-                    name: "Yassine Elouafi",
-                    email: "yassinechettouch@gmail.com",
-                    image: "https://avatars.githubusercontent.com/u/183598?s=400&u=5a1a0b2a1e0d0c3b9f9f4f1e0c9c3f2d6e6e9a3f&v=4",
+                    name: "Anonymous",
+                    email: "anonymous@skymap.dev",
+                    image: "https://ui-avatars.com/api/?name=A+S",
                 }
 
                 return validUser;
